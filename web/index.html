@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aireal Estudio — Fotografía y vídeo aéreo en Tenerife</title>
+<meta name="description" content="Fotografía y vídeo con dron en Tenerife para inmobiliarias, viviendas vacacionales, hoteles y restaurantes. Operador registrado en AESA. Entrega en 72 h.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/monograma.png" type="image/png">
+<meta property="og:title" content="Aireal Estudio — Fotografía y vídeo aéreo en Tenerife">
+<meta property="og:description" content="Tu espacio, visto desde donde nadie lo ha mirado. Foto y vídeo con dron para turismo, inmobiliarias y hostelería en Tenerife.">
+<meta property="og:image" content="assets/img/post-promo.png"><!-- TODO: al publicar, cambiar por URL absoluta https://airealestudio.com/assets/img/post-promo.png -->
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--terracota:#BF5B33;--terracota-oscuro:#8F4022;--ocre:#C79A3C;--oliva:#6E6B4A;--crema:#F5F0E8;--crema-oscura:#EFE9DE;--tierra:#33291F;--texto:#2A241E;--muted:#8A7F6C;--borde:#DCD4C4;--panel:#FBF8F2}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Hanken Grotesk',sans-serif;background:var(--crema);color:var(--texto)}
+a{color:var(--terracota);text-decoration:none}a:hover{color:var(--terracota-oscuro)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+@keyframes dotBounce{0%{transform:translate(-50%,0);animation-timing-function:ease-out}50%{transform:translate(-50%,-.55em);animation-timing-function:ease-in}100%{transform:translate(-50%,0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.dot{position:absolute;left:50%;top:-.36em;width:.17em;height:.17em;border-radius:50%;background:var(--terracota);transform:translate(-50%,0);animation:dotBounce 1.5s infinite}
+.dot-f{animation-delay:.75s}
+.fu{animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both}
+.fu2{animation-delay:.15s}
+.fu3{animation-delay:.28s}
+@media(prefers-reduced-motion:reduce){.foto-flot,.fu,.fu2,.fu3,.foto-col{animation:none!important}}
+header{position:sticky;top:0;z-index:10;background:rgba(245,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--borde)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px;max-width:1360px}
+.mono{font-weight:300;font-size:30px;line-height:1;color:var(--texto);position:relative;display:inline-block}
+nav ul{display:flex;align-items:center;gap:34px;list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
+nav a{color:var(--texto)}nav a:hover{color:var(--terracota)}
+.cta{display:inline-block;background:var(--terracota);color:var(--crema);font-weight:600;font-size:15px;padding:15px 30px;border-radius:99px;transition:background .2s,transform .2s}
+.cta:hover{background:var(--terracota-oscuro);color:var(--crema);transform:translateY(-2px)}
+.cta-nav{font-size:14px;padding:11px 22px}
+.cta-nav:hover{transform:none}
+.cta-sec{display:inline-block;border:1.5px solid var(--terracota);color:var(--terracota);font-weight:600;font-size:15px;padding:13.5px 30px;border-radius:99px;transition:background .2s,color .2s}
+.cta-sec:hover{background:var(--terracota);color:var(--crema)}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:stretch;padding-top:64px;padding-bottom:88px;max-width:1360px}
+.logo-hero{font-weight:300;font-size:124px;line-height:.95;letter-spacing:.01em;color:var(--texto)}
+.logo-hero .i{position:relative;display:inline-block}
+.logo-hero-sub{font-size:24px;font-weight:600;letter-spacing:.62em;text-transform:uppercase;color:var(--muted);margin-top:12px;padding-left:4px}
+.eyebrow{display:flex;align-items:center;gap:12px}
+.eyebrow span:first-child{width:26px;height:1.5px;background:var(--terracota)}
+.eyebrow span:last-child{font-size:12.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terracota)}
+h1{font-weight:300;font-size:clamp(44px,5.4vw,74px);line-height:1.1;letter-spacing:-.015em;margin:22px 0 0;text-wrap:pretty}
+h1 .punto{color:var(--terracota)}
+.hero p{font-size:18px;line-height:1.65;color:#5C5546;max-width:58ch;margin:26px 0 0}
+.hero-botones{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.foto-col{align-self:stretch;display:flex;animation:fadeIn .9s ease .25s both}
+.foto-flot{position:relative;flex:1;display:flex;animation:floatY 6.5s ease-in-out 1.2s infinite}
+.foto-marco{position:absolute;inset:14px -14px -14px 14px;border:1.5px solid var(--ocre);border-radius:18px;opacity:.55}
+.foto{position:relative;flex:1;border-radius:16px;overflow:hidden;background:var(--oliva);box-shadow:0 24px 60px -24px rgba(51,41,31,.35);display:flex;align-items:center;justify-content:center;color:var(--crema);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.confianza{border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);background:var(--crema-oscura)}
+.confianza .items{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px;padding:20px 28px;max-width:1200px;margin:0 auto}
+.confianza .items span{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252}
+.confianza .items .sep{width:5px;height:5px;border-radius:50%;background:var(--terracota);padding:0}
+section{padding:80px 0}
+.dark{background:var(--tierra);color:var(--crema)}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terracota);margin-bottom:10px}
+h2{font-weight:300;font-size:36px;margin:0 0 36px}
+h3{font-weight:500}
+.ph{background:var(--oliva);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--crema);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.grid3c{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:26px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-size:18px;margin:0}
+.card p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
+.card img{width:30px;height:30px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid3 .ph{aspect-ratio:1}
+.precio-card{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
+.precio-card.destacado{border:1.5px solid var(--terracota)}
+.precio-card .nombre{font-weight:500;font-size:19px;margin:0}
+.precio-card .precio{font-weight:300;font-size:40px;line-height:1}
+.precio-card .precio small{font-size:15px;color:var(--muted);font-weight:400}
+.precio-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5;color:#5C5546}
+.precio-card ul li::before{content:"— ";color:var(--terracota)}
+.precio-card .cta,.precio-card .cta-sec{text-align:center;margin-top:auto}
+.nota-precios{font-size:13px;color:var(--muted);margin-top:18px}
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:paso}
+.paso{counter-increment:paso;background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:26px 22px}
+.paso::before{content:"0" counter(paso);font-weight:300;font-size:34px;color:var(--terracota);display:block;margin-bottom:10px}
+.paso h3{font-size:17px;margin:0 0 8px}
+.paso p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:16px}
+.wa{display:inline-flex;align-items:center;gap:10px;background:var(--terracota);color:var(--crema);font-weight:600;font-size:16px;padding:16px 30px;border-radius:99px;margin-bottom:18px}
+.wa:hover{background:var(--terracota-oscuro);color:var(--crema)}
+.pie{background:var(--tierra);color:var(--crema)}
+.pie .inner{max-width:1200px;margin:0 auto;padding:78px 28px 34px;display:flex;flex-direction:column;align-items:center}
+.pie .logo-pie{font-weight:300;line-height:1;color:var(--crema);font-size:60px;letter-spacing:.01em}
+.pie .logo-pie .i{position:relative;display:inline-block}
+.pie .sub{font-size:12px;font-weight:600;letter-spacing:.55em;padding-left:.55em;text-transform:uppercase;color:#B7AB94;margin-top:14px}
+.pie .tagline{font-size:13.5px;color:var(--muted);margin-top:22px;letter-spacing:.04em}
+.pie .linea{width:100%;height:1px;background:#4A3E30;margin-top:52px}
+.pie .legal{width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:22px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#B7AB94}
+.pie .legal a{color:#B7AB94}.pie .legal a:hover{color:var(--ocre)}
+.pie .legal a.ig{color:var(--ocre)}.pie .legal a.ig:hover{color:var(--crema)}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;gap:48px;padding-top:48px;padding-bottom:64px}
+.logo-hero{font-size:64px}
+.logo-hero-sub{font-size:15px}
+.foto-col{min-height:420px}
+nav ul{display:none}
+.grid3c,.grid3,.pasos,.contact{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+<a class="mono" href="#" aria-label="Aireal Estudio">a<span class="dot"></span></a>
+<nav><ul>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#trabajo">Trabajo</a></li>
+<li><a href="#tarifas">Tarifas</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul></nav>
+<a class="cta cta-nav" href="#contacto">Reserva tu vuelo</a>
+</div></header>
+
+<main>
+<section class="hero wrap">
+<div>
+<div class="fu" style="margin-bottom:40px">
+<div class="logo-hero">a<span class="i">ı<span class="dot"></span></span>real</div>
+<div class="logo-hero-sub">estudio</div>
+</div>
+<div class="eyebrow fu">
+<span></span>
+<span>Fotografía y vídeo aéreo · Tenerife</span>
+</div>
+<h1 class="fu">Tu espacio, visto desde donde nadie lo ha mirado<span class="punto">.</span></h1>
+<p class="fu fu2">Imágenes aéreas que hacen que un hotel, una propiedad o un restaurante se entiendan de un vistazo. Trabajamos en toda la isla para turismo, inmobiliarias, alojamientos y negocios locales.</p>
+<div class="hero-botones fu fu3">
+<a class="cta" href="#contacto">Reserva tu vuelo</a>
+<a class="cta-sec" href="#tarifas">Ver tarifas</a>
+</div>
+</div>
+<div class="foto-col">
+<div class="foto-flot">
+<div class="foto-marco"></div>
+<!-- TODO: sustituir por tu mejor foto aérea: dentro de .foto, <img src="assets/img/hero.jpg" alt="Vista aérea de Tenerife" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
+<div class="foto">Tu foto aérea</div>
+</div>
+</div>
+</section>
+
+<div class="confianza"><div class="items">
+<span>Operador registrado AESA</span>
+<span class="sep"></span>
+<span>Seguro de RC</span>
+<span class="sep"></span>
+<span>Entrega en 72 h</span>
+<span class="sep"></span>
+<span>Toda la isla de Tenerife</span>
+</div></div>
+
+<section id="servicios"><div class="wrap">
+<div class="kicker">Servicios</div>
+<h2>Qué hacemos</h2>
+<div class="grid3c">
+<div class="card"><img src="assets/icons/inmobiliaria.svg" alt=""><h3>Inmobiliario</h3><p>La propiedad, la parcela y el entorno en una sola imagen. Vende contexto, no solo metros.</p></div>
+<div class="card"><img src="assets/icons/alojamiento.svg" alt=""><h3>Vivienda vacacional y hoteles</h3><p>Anuncios que se reservan solos cuando se ven desde arriba. Foto, vídeo y tour vertical para Airbnb y Booking.</p></div>
+<div class="card"><img src="assets/icons/restaurante.svg" alt=""><h3>Restaurantes y negocios</h3><p>Terrazas, ubicación y ambiente: el motivo para elegirte antes de llegar.</p></div>
+<div class="card"><img src="assets/icons/reel.svg" alt=""><h3>Vídeo y reels</h3><p>Piezas cortas listas para Instagram y TikTok, con edición y color incluidos.</p></div>
+<div class="card"><img src="assets/icons/video.svg" alt=""><h3>Gestión de redes</h3><p>Nos encargamos de tu Instagram con contenido grabado por nosotros, cada mes, sin que muevas un dedo.</p></div>
+<div class="card"><img src="assets/icons/entrega.svg" alt=""><h3>Webs con reserva directa</h3><p>Tu propia web con motor de reservas y pago online. Cada reserva directa es comisión que no pagas a las plataformas.</p></div>
+</div>
+</div></section>
+
+<section id="trabajo" style="background:var(--crema-oscura)"><div class="wrap">
+<div class="kicker">Trabajo</div>
+<h2>Últimos vuelos</h2>
+<!-- TODO: sustituir cada bloque por <img> o <video> reales del portfolio -->
+<div class="grid3">
+<div class="ph">Tu foto aérea</div>
+<div class="ph" style="background:var(--terracota)">Tu foto aérea</div>
+<div class="ph" style="background:var(--tierra)">Tu foto aérea</div>
+</div>
+</div></section>
+
+<section id="tarifas"><div class="wrap">
+<div class="kicker">Tarifas</div>
+<h2>Precios claros, sin sorpresas</h2>
+<div class="grid3c">
+<div class="precio-card">
+<h3 class="nombre">Pack Propiedad</h3>
+<div class="precio">desde 250&nbsp;€ <small>/ sesión</small></div>
+<ul>
+<li>20–30 fotos editadas</li>
+<li>Vídeo de 60–90 s (dron + interior)</li>
+<li>Entrega en 72 h</li>
+<li>Premium: tour vertical + fotos twilight, 400 €</li>
+</ul>
+<a class="cta-sec" href="#contacto">Pedir fecha</a>
+</div>
+<div class="precio-card destacado">
+<h3 class="nombre">Reel para tu negocio</h3>
+<div class="precio">desde 350&nbsp;€ <small>/ sesión</small></div>
+<ul>
+<li>Media jornada de rodaje</li>
+<li>Vídeo 30–60 s con música y rótulos</li>
+<li>Formato vertical listo para redes</li>
+<li>Pack 3 reels en una sesión: 750 €</li>
+</ul>
+<a class="cta" href="#contacto">Pedir fecha</a>
+</div>
+<div class="precio-card">
+<h3 class="nombre">Tu contenido, cada mes</h3>
+<div class="precio">desde 300&nbsp;€ <small>/ mes</small></div>
+<ul>
+<li>Publicaciones mensuales con material propio</li>
+<li>Gestión de perfiles y reseñas</li>
+<li>Planes con rodaje mensual incluido</li>
+<li>Sin permanencias largas: 3 meses</li>
+</ul>
+<a class="cta-sec" href="#contacto">Hablemos</a>
+</div>
+</div>
+<p class="nota-precios">Precios sin IGIC (7 %). Desplazamiento incluido en toda la isla de Tenerife. Webs con motor de reserva directa: presupuesto a medida desde 800 €.</p>
+</div></section>
+
+<section style="background:var(--crema-oscura)"><div class="wrap">
+<div class="kicker">Proceso</div>
+<h2>Así de simple</h2>
+<div class="pasos">
+<div class="paso"><h3>Cuéntanos qué quieres mostrar</h3><p>Escríbenos por WhatsApp. Te respondemos en menos de 24 h con propuesta y fecha de vuelo.</p></div>
+<div class="paso"><h3>Volamos y grabamos</h3><p>Sesión planificada, con permisos de vuelo y seguro en regla. Tú solo abres la puerta.</p></div>
+<div class="paso"><h3>Recibes tu material en 72 h</h3><p>Editado, con color y listo para publicar en tu anuncio o en tus redes.</p></div>
+</div>
+</div></section>
+
+<section id="contacto" class="dark"><div class="wrap">
+<div class="contact">
+<div>
+<div class="kicker" style="color:var(--ocre)">Contacto</div>
+<h2 style="color:var(--crema)">Cuéntanos qué quieres mostrar</h2>
+<p style="color:#CFC5B0;line-height:1.6">Respondemos en menos de 24 h con propuesta y fecha de vuelo.</p>
+</div>
+<div>
+<!-- TODO: poner tu número real en los DOS sitios (enlace wa.me y texto visible) -->
+<a class="wa" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20v%C3%ADdeo%20a%C3%A9reo">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L4 20l.9-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+Escríbenos por WhatsApp</a>
+<ul>
+<li><a href="tel:+34600000000" style="color:var(--crema)">+34 600 000 000</a></li>
+<!-- TODO: cuando actives el correo del dominio, cambiar por hola@airealestudio.com -->
+<li><a href="mailto:williamluisgonzalez@gmail.com" style="color:var(--crema)">williamluisgonzalez@gmail.com</a></li>
+<li><a href="https://instagram.com/airealestudio" style="color:var(--ocre)">@airealestudio</a></li>
+</ul>
+</div>
+</div>
+</div></section>
+</main>
+
+<footer class="pie">
+<div class="inner">
+<div class="logo-pie">a<span class="i">ı<span class="dot dot-f"></span></span>real</div>
+<div class="sub">estudio</div>
+<div class="tagline">Fotografía y vídeo aéreo · Tenerife</div>
+<div class="linea"></div>
+<div class="legal">
+<span>© 2026 Aireal Estudio</span>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<!-- TODO: cuando actives el correo del dominio, cambiar por hola@airealestudio.com -->
+<a href="mailto:williamluisgonzalez@gmail.com">williamluisgonzalez@gmail.com</a>
+<a class="ig" href="https://instagram.com/airealestudio">@airealestudio</a>
+<a href="aviso-legal.html">Aviso legal</a>
+<a href="privacidad.html">Privacidad</a>
+<a href="cookies.html">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body>
+</html>

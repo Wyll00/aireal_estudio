@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aireal Estudio — Fotografía y vídeo aéreo</title>
+<meta name="description" content="Fotografía y vídeo aéreo para turismo, inmobiliarias, alojamientos y restaurantes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>:root{--terracota:#BF5B33;--ocre:#C79A3C;--oliva:#6E6B4A;--crema:#F5F0E8;--tierra:#33291F;--texto:#2A241E;--muted:#8A7F6C}
+*{box-sizing:border-box}body{margin:0;font-family:'Hanken Grotesk',sans-serif;background:var(--crema);color:var(--texto)}
+a{color:var(--terracota);text-decoration:none}a:hover{color:#8F4022}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;background:rgba(245,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid #DCD4C4;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:300;font-size:26px;line-height:1}.logo .i{position:relative;display:inline-block}
+.logo .i::after{content:"";position:absolute;left:50%;top:-8px;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--terracota)}
+.logo small{display:block;font-size:9px;font-weight:500;letter-spacing:.5em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500}
+nav a{color:var(--texto)}nav a:hover{color:var(--terracota)}
+.hero{padding:110px 24px 90px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+h1{font-weight:300;font-size:clamp(38px,5vw,60px);line-height:1.12;letter-spacing:-.01em;margin:0;text-wrap:pretty}
+.hero p{font-size:17px;line-height:1.6;color:#5C5546;max-width:44ch}
+.cta{display:inline-block;background:var(--terracota);color:var(--crema);font-weight:600;font-size:15px;padding:14px 28px;border-radius:99px}
+.cta:hover{background:#8F4022;color:var(--crema)}
+.ph{background:var(--oliva);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--crema);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.hero .ph{aspect-ratio:4/5}
+section{padding:80px 0}.dark{background:var(--tierra);color:var(--crema)}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terracota);margin-bottom:10px}
+h2{font-weight:300;font-size:36px;margin:0 0 36px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#FBF8F2;border:1px solid #DCD4C4;border-radius:10px;padding:26px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-weight:500;font-size:18px;margin:0}.card p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid3 .ph{aspect-ratio:1}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:16px}
+footer{border-top:1px solid #4A3E30;padding:22px 0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#B7AB94;display:flex;justify-content:space-between}
+@media(max-width:820px){.hero,.contact{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}nav ul{display:none}}</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="logo">a<span class="i">ı</span>real<small>estudio</small></div>
+<nav><ul><li><a href="#servicios">Servicios</a></li><li><a href="#trabajo">Trabajo</a></li><li><a href="#contacto">Contacto</a></li></ul></nav>
+<a class="cta" href="#contacto" style="padding:10px 20px;font-size:14px">Reserva tu vuelo</a></div></header>
+
+<section class="hero wrap">
+<div>
+<div class="kicker">Fotografía y vídeo aéreo</div>
+<h1>Tu espacio, visto desde donde nadie lo ha mirado.</h1>
+<p>Imágenes aéreas que hacen que un hotel, una propiedad o un restaurante se entiendan de un vistazo. Para turismo, inmobiliarias, alojamientos y negocios locales.</p>
+<a class="cta" href="#contacto">Reserva tu vuelo</a>
+</div>
+<div class="ph">Tu foto aérea</div>
+</section>
+
+<section id="servicios"><div class="wrap">
+<div class="kicker">Servicios</div>
+<h2>Qué hacemos</h2>
+<div class="grid4">
+<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/></svg><h3>Inmobiliario</h3><p>La propiedad, la parcela y el entorno en una sola imagen. Vende contexto, no solo metros.</p></div>
+<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.4 5.2-5.2 2.4 2.4-5.2z"/></svg><h3>Turismo y alojamiento</h3><p>Hoteles, Airbnb y destinos que se reservan solos cuando se ven desde arriba.</p></div>
+<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.4"/></svg><h3>Restaurantes y negocios</h3><p>Terrazas, ubicación y ambiente: el motivo para elegirte antes de llegar.</p></div>
+<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M10.2 8.8l5.4 3.2-5.4 3.2z"/></svg><h3>Vídeo y reels</h3><p>Piezas cortas listas para redes, con edición y color incluidos.</p></div>
+</div>
+</div></section>
+
+<section id="trabajo" style="background:#EDE8DF"><div class="wrap">
+<div class="kicker">Trabajo</div>
+<h2>Últimos vuelos</h2>
+<div class="grid3">
+<div class="ph">Tu foto aérea</div>
+<div class="ph" style="background:var(--terracota)">Tu foto aérea</div>
+<div class="ph" style="background:var(--tierra)">Tu foto aérea</div>
+</div>
+</div></section>
+
+<section id="contacto" class="dark"><div class="wrap">
+<div class="contact">
+<div>
+<div class="kicker" style="color:var(--ocre)">Contacto</div>
+<h2 style="color:var(--crema)">Cuéntanos qué quieres mostrar</h2>
+<p style="color:#CFC5B0;line-height:1.6">Respondemos en menos de 24 h con propuesta y fecha de vuelo.</p>
+</div>
+<ul>
+<li><a href="tel:+520000000000" style="color:var(--crema)">+52 000 000 0000</a></li>
+<li><a href="mailto:hola@airealestudio.com" style="color:var(--crema)">hola@airealestudio.com</a></li>
+<li><a href="https://instagram.com" style="color:var(--ocre)">@airealestudio</a></li>
+</ul>
+</div>
+</div>
+<div class="wrap"><footer><span>Aireal Estudio</span><span>Fotografía y vídeo aéreo</span></footer></div>
+</section>
+</body>
+</html>

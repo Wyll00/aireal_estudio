@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#F5F0E8;font-family:'Hanken Grotesk',sans-serif;color:#2A241E}
+a{color:#BF5B33;text-decoration:none}a:hover{color:#8F4022}
+@keyframes dotHop{0%,10%,34%,100%{transform:translate(-50%,0)}16%{transform:translate(-50%,-.5em)}24%{transform:translate(-50%,-.14em)}29%{transform:translate(-50%,-.05em)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#F5F0E8">
+
+  <header style="position:sticky;top:0;z-index:10;background:rgba(245,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid #DCD4C4">
+    <div style="max-width:1200px;margin:0 auto;padding:0 28px;height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <div style="font-weight:300;font-size:30px;line-height:1;color:#2A241E;position:relative;display:inline-block">a<span style="position:absolute;left:50%;top:-.36em;width:.17em;height:.17em;border-radius:50%;background:#BF5B33;transform:translate(-50%,0);animation:{{ dotAnim }}"></span></div>
+      <nav style="display:flex;align-items:center;gap:34px;font-size:14.5px;font-weight:500">
+        <a href="#servicios" style="color:#2A241E" style-hover="color:#BF5B33">Servicios</a>
+        <a href="#trabajo" style="color:#2A241E" style-hover="color:#BF5B33">Trabajo</a>
+        <a href="#tarifas" style="color:#2A241E" style-hover="color:#BF5B33">Tarifas</a>
+        <a href="#contacto" style="color:#2A241E" style-hover="color:#BF5B33">Contacto</a>
+      </nav>
+      <a href="#contacto" style="background:#BF5B33;color:#F5F0E8;font-weight:600;font-size:14px;padding:11px 22px;border-radius:99px;transition:background .2s" style-hover="background:#8F4022;color:#F5F0E8">Reserva tu vuelo</a>
+    </div>
+  </header>
+
+  <main style="flex:1">
+    <section style="max-width:1200px;margin:0 auto;padding:64px 28px 88px;display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:stretch">
+      <div>
+        <div style="margin-bottom:40px;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both">
+          <div style="font-weight:300;font-size:108px;line-height:.95;letter-spacing:.01em;color:#2A241E">a<span style="position:relative;display:inline-block">ı<span style="position:absolute;left:50%;top:-.36em;width:.17em;height:.17em;border-radius:50%;background:#BF5B33;transform:translate(-50%,0);animation:{{ dotAnim }}"></span></span>real</div>
+          <div style="font-size:22px;font-weight:600;letter-spacing:.62em;text-transform:uppercase;color:#8A7F6C;margin-top:12px;padding-left:4px">estudio</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both">
+          <span style="width:26px;height:1.5px;background:#BF5B33"></span>
+          <span style="font-size:12.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#BF5B33">Fotografía y vídeo aéreo · Tenerife</span>
+        </div>
+        <h1 style="font-weight:300;font-size:clamp(40px,4.8vw,62px);line-height:1.1;letter-spacing:-.015em;margin:22px 0 0;text-wrap:pretty">Tu espacio, visto desde donde nadie lo ha mirado<span style="color:#BF5B33">.</span></h1>
+        <p style="font-size:17px;line-height:1.65;color:#5C5546;max-width:46ch;margin:26px 0 0;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) .15s both">Imágenes aéreas que hacen que un hotel, una propiedad o un restaurante se entiendan de un vistazo. Trabajamos en toda la isla para turismo, inmobiliarias, alojamientos y negocios locales.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) .28s both">
+          <a href="#contacto" style="background:#BF5B33;color:#F5F0E8;font-weight:600;font-size:15px;padding:15px 30px;border-radius:99px;transition:background .2s,transform .2s" style-hover="background:#8F4022;color:#F5F0E8;transform:translateY(-2px)">Reserva tu vuelo</a>
+          <a href="#tarifas" style="border:1.5px solid #BF5B33;color:#BF5B33;font-weight:600;font-size:15px;padding:13.5px 30px;border-radius:99px;transition:background .2s,color .2s" style-hover="background:#BF5B33;color:#F5F0E8">Ver tarifas</a>
+        </div>
+      </div>
+      <div style="animation:fadeIn .9s ease .25s both;align-self:stretch;display:flex">
+        <div style="position:relative;flex:1;display:flex;animation:{{ cardAnim }}">
+          <div style="position:absolute;inset:14px -14px -14px 14px;border:1.5px solid #C79A3C;border-radius:18px;opacity:.55"></div>
+          <div style="position:relative;flex:1;border-radius:16px;overflow:hidden;background:#6E6B4A;box-shadow:0 24px 60px -24px rgba(51,41,31,.35)">
+            <image-slot id="foto-hero" shape="rect" placeholder="Tu foto aérea" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="border-top:1px solid #DCD4C4;border-bottom:1px solid #DCD4C4;background:#EFE9DE">
+      <div style="max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px">
+        <span style="font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252">Operador registrado AESA</span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#BF5B33"></span>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252">Seguro de RC</span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#BF5B33"></span>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252">Entrega en 72 h</span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#BF5B33"></span>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252">Toda la isla de Tenerife</span>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background:#33291F;color:#F5F0E8">
+    <div style="max-width:1200px;margin:0 auto;padding:78px 28px 34px;display:flex;flex-direction:column;align-items:center">
+      <div style="font-weight:300;line-height:1;color:#F5F0E8;font-size:{{ logoFooterPx }}px;letter-spacing:.01em">a<span style="position:relative;display:inline-block">ı<span style="position:absolute;left:50%;top:-.36em;width:.17em;height:.17em;border-radius:50%;background:#BF5B33;transform:translate(-50%,0);animation:{{ dotAnimFooter }}"></span></span>real</div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.55em;padding-left:.55em;text-transform:uppercase;color:#B7AB94;margin-top:14px">estudio</div>
+      <div style="font-size:13.5px;color:#8A7F6C;margin-top:22px;letter-spacing:.04em">Fotografía y vídeo aéreo · Tenerife</div>
+      <div style="width:100%;height:1px;background:#4A3E30;margin-top:52px"></div>
+      <div style="width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:22px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#B7AB94">
+        <span>© {{ year }} Aireal Estudio</span>
+        <div style="display:flex;gap:24px">
+          <a href="mailto:hola@airealestudio.com" style="color:#B7AB94" style-hover="color:#C79A3C">hola@airealestudio.com</a>
+          <a href="https://instagram.com" style="color:#C79A3C" style-hover="color:#F5F0E8">@airealestudio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;animarPunto&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animaciones&quot;},
+  &quot;flotarFoto&quot;: {&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animaciones&quot;},
+  &quot;logoFooterPx&quot;: {&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:60,&quot;min&quot;:36,&quot;max&quot;:120,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;section&quot;:&quot;Logo del pie&quot;,&quot;tsType&quot;:&quot;number&quot;}
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const anima = this.props.animarPunto ?? true;
+    const flota = this.props.flotarFoto ?? true;
+    return {
+      dotAnim: anima ? 'dotHop 3.4s ease-in-out .9s infinite' : 'none',
+      dotAnimFooter: anima ? 'dotHop 3.4s ease-in-out 1.8s infinite' : 'none',
+      cardAnim: flota ? 'floatY 6.5s ease-in-out 1.2s infinite' : 'none',
+      logoFooterPx: this.props.logoFooterPx ?? 60,
+      year: new Date().getFullYear()
+    };
+  }
+}
+</script>
+</body>
+</html>
