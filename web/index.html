@@ -71,6 +71,9 @@ h3{font-weight:500}
 .card h3{font-size:18px;margin:0}
 .card p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
 .card img{width:30px;height:30px}
+.card .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.card .tag{font-size:11.5px;font-weight:600;letter-spacing:.08em;color:#6B6252;background:var(--crema-oscura);border:1px solid var(--borde);border-radius:99px;padding:4px 12px}
+.card .repo{font-size:13.5px;font-weight:600}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .grid3 .ph{aspect-ratio:1}
 .precio-card{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
@@ -118,6 +121,7 @@ nav ul{display:none}
 <nav><ul>
 <li><a href="#servicios">Servicios</a></li>
 <li><a href="#trabajo">Trabajo</a></li>
+<li><a href="#proyectos">Proyectos</a></li>
 <li><a href="#tarifas">Tarifas</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul></nav>
@@ -182,6 +186,34 @@ nav ul{display:none}
 <div class="ph">Tu foto aérea</div>
 <div class="ph" style="background:var(--terracota)">Tu foto aérea</div>
 <div class="ph" style="background:var(--tierra)">Tu foto aérea</div>
+</div>
+</div></section>
+
+<section id="proyectos"><div class="wrap">
+<div class="kicker">Proyectos</div>
+<h2>Cosas que hemos construido</h2>
+<div class="grid3c">
+<div class="card">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10.5 4 8 3.5 4 3.5v14c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-14c-4 0-6.5.5-8 2z"/><path d="M12 5.5v14"/></svg>
+<h3>Lumbress</h3>
+<p>Tu biblioteca personal en una app: catálogo de libros, estadísticas de lectura, comunidad y calendario. Con cuentas de usuario y sesión segura.</p>
+<div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span></div>
+<a class="repo" href="https://github.com/Wyll00/Lumbress">Ver en GitHub →</a>
+</div>
+<div class="card">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 3.5 6 6.3 6 10a6 6 0 0 1-12 0c0-2.2 1-4 2.4-5.6.5 1.1 1.2 2 2.2 2.6C10.2 7.8 11 5.4 12 3z"/></svg>
+<h3>Pábilo Velas</h3>
+<p>Web de marca para velas artesanales — «El fuego de los pequeños placeres». Identidad cálida, carrusel de producto y carga ligera.</p>
+<div class="tags"><span class="tag">Astro</span><span class="tag">Cloudflare</span></div>
+<a class="repo" href="https://github.com/Wyll00/pabilo-velas">Ver en GitHub →</a>
+</div>
+<div class="card">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r=".8"/></svg>
+<h3>Sistema CMS</h3>
+<p>App de adiestramiento con disciplina militar: misiones diarias, hábitos, entrenamientos y bitácora. Multiusuario e instalable en el móvil.</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PWA</span></div>
+<a class="repo" href="https://github.com/Wyll00/Habitos_Game">Ver en GitHub →</a>
+</div>
 </div>
 </div></section>
 
