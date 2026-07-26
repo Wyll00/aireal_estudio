@@ -11,7 +11,6 @@
 <meta property="og:description" content="Tu espacio, visto desde donde nadie lo ha mirado. Foto y vídeo con dron para turismo, inmobiliarias y hostelería en Tenerife.">
 <meta property="og:image" content="assets/img/post-promo.png"><!-- TODO: al publicar, cambiar por URL absoluta https://airealestudio.com/assets/img/post-promo.png -->
 <meta property="og:type" content="website">
-<!-- test-sync-cloudflare 2026-07-23 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -86,6 +85,24 @@ h3{font-weight:500}
 .precio-card ul li::before{content:"— ";color:var(--terracota)}
 .precio-card .cta,.precio-card .cta-sec{text-align:center;margin-top:auto}
 .nota-precios{font-size:13px;color:var(--muted);margin-top:18px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:8px}
+.calc-campo{margin-bottom:34px}
+.calc-campo label{display:block;font-size:14.5px;color:#CFC5B0;margin-bottom:14px}
+.calc-campo .valor{font-weight:300;font-size:34px;line-height:1;color:var(--crema);margin-bottom:14px}
+.calc-campo input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;background:#4A3E30;outline:none}
+.calc-campo input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--terracota);border:3px solid var(--tierra);cursor:pointer}
+.calc-campo input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--terracota);border:3px solid var(--tierra);cursor:pointer}
+.calc-campo input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(191,91,51,.4)}
+.calc-panel{background:#2B221A;border:1px solid #4A3E30;border-radius:14px;padding:34px 32px}
+.calc-panel .etiqueta{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#B7AB94}
+.calc-panel .cifra{font-weight:300;font-size:clamp(48px,6vw,68px);line-height:1.05;color:#E58256;margin:10px 0 6px;letter-spacing:-.02em}
+.calc-panel .cifra-sub{font-size:15px;color:#CFC5B0}
+.calc-panel .cifra-sub strong{font-weight:500;color:var(--ocre)}
+.calc-panel .linea{height:1px;background:#4A3E30;margin:26px 0}
+.calc-panel .ahorro{font-size:16px;line-height:1.6;color:#CFC5B0;margin:0 0 24px}
+.calc-panel .ahorro strong{font-weight:500;color:var(--crema)}
+.nota-calc{font-size:12.5px;line-height:1.6;color:#8A7F6C;margin-top:26px;max-width:75ch}
+@media(max-width:820px){.calc{grid-template-columns:1fr;gap:34px}}
 .pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:paso}
 .paso{counter-increment:paso;background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:26px 22px}
 .paso::before{content:"0" counter(paso);font-weight:300;font-size:34px;color:var(--terracota);display:block;margin-bottom:10px}
@@ -270,7 +287,39 @@ nav ul{display:none}
 <a class="cta-sec" href="#contacto">Hablemos</a>
 </div>
 </div>
-<p class="nota-precios">Precios sin IGIC (7 %). Desplazamiento incluido en toda la isla de Tenerife. Webs con motor de reserva directa: presupuesto a medida desde 800 €.</p>
+<p class="nota-precios">Precios sin IGIC (7 %). Desplazamiento incluido en toda la isla de Tenerife. Webs con motor de reserva directa: presupuesto a medida desde 800 €. <a href="#calculadora">Mira cuánto pagas de comisiones →</a></p>
+</div></section>
+
+<section id="calculadora" class="dark"><div class="wrap">
+<div class="kicker" style="color:var(--ocre)">Reservas directas</div>
+<h2 style="color:var(--crema)">¿Sabes cuánto dejas en comisiones?</h2>
+<p style="color:#CFC5B0;line-height:1.6;max-width:56ch;margin:-20px 0 40px">Airbnb y Booking se llevan su parte de cada reserva, todo el año. Mueve los datos de tu alojamiento y te lo enseñamos.</p>
+
+<div class="calc">
+<div>
+<div class="calc-campo">
+<label for="facturacion">Lo que factura tu alojamiento al año</label>
+<div class="valor" id="out-facturacion">30.000 €</div>
+<input type="range" id="facturacion" min="5000" max="150000" step="1000" value="30000">
+</div>
+<div class="calc-campo" style="margin-bottom:0">
+<label for="comision">Comisión media de las plataformas</label>
+<div class="valor" id="out-comision">15 %</div>
+<input type="range" id="comision" min="8" max="22" step="0.5" value="15">
+</div>
+</div>
+
+<div class="calc-panel">
+<div class="etiqueta">Cada año pagas en comisiones</div>
+<div class="cifra" id="cifra-anual" aria-live="polite">4.500 €</div>
+<div class="cifra-sub">En cinco años son <strong id="cifra-cinco">22.500 €</strong></div>
+<div class="linea"></div>
+<p class="ahorro">Si solo <strong>una de cada cuatro</strong> reservas entrara por tu propia web, te ahorrarías <strong id="cifra-ahorro">1.013 €</strong> cada año.</p>
+<a class="cta" href="#contacto">Quiero mi web con reservas directas</a>
+</div>
+</div>
+
+<p class="nota-calc">Cálculo orientativo. Las comisiones varían según la plataforma y el plan contratado: Booking suele moverse entre el 15 % y el 18 %, y en Airbnb depende de si la paga solo el anfitrión o se reparte con el huésped. En el ahorro ya está descontado el coste de la pasarela de pago de las reservas directas (en torno al 1,5 %).</p>
 </div></section>
 
 <section style="background:var(--crema-oscura)"><div class="wrap">
@@ -325,6 +374,39 @@ Escríbenos por WhatsApp</a>
 </div>
 </div>
 </footer>
+
+<script>
+(function(){
+  var facturacion = document.getElementById('facturacion');
+  var comision = document.getElementById('comision');
+  if(!facturacion || !comision) return;
+
+  var PASARELA = 1.5;   // coste de la pasarela de pago en una reserva directa
+  var DIRECTAS = 0.25;  // una de cada cuatro reservas
+
+  // Punto de millar siempre, tambien en cifras de cuatro digitos
+  function euros(n){
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.') + ' €';
+  }
+
+  function actualizar(){
+    var anual = Number(facturacion.value);
+    var tasa = Number(comision.value);
+    var comisionAnual = anual * tasa / 100;
+    var ahorro = anual * DIRECTAS * (tasa - PASARELA) / 100;
+
+    document.getElementById('out-facturacion').textContent = euros(anual);
+    document.getElementById('out-comision').textContent = tasa.toLocaleString('es-ES') + ' %';
+    document.getElementById('cifra-anual').textContent = euros(comisionAnual);
+    document.getElementById('cifra-cinco').textContent = euros(comisionAnual * 5);
+    document.getElementById('cifra-ahorro').textContent = euros(ahorro);
+  }
+
+  facturacion.addEventListener('input', actualizar);
+  comision.addEventListener('input', actualizar);
+  actualizar();
+})();
+</script>
 
 </body>
 </html>
