@@ -1,0 +1,39 @@
+{
+  "mode": "built-in image_gen",
+  "generatedOn": "2026-09-08",
+  "assets": [
+    {
+      "key": "aireal-hotel-concept",
+      "description": "Imaginary cream boutique hotel with turquoise pool and palms on a dramatic volcanic Atlantic coastline in warm late-afternoon light.",
+      "width": 1536,
+      "height": 1024,
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative website hero and lodging portfolio concept for Aireal Estudio, a Tenerife creative marketing and AI studio.\nPrimary request: Create one cinematic editorial aerial photograph of an IMAGINARY boutique hotel on a volcanic Atlantic coastline, with cobalt ocean, an architectural cream building, a small turquoise pool, lush palms, geometric sunlit terrace, and rich terracotta details.\nStyle/medium: Premium architecture magazine photography, natural realistic materials and landscape.\nComposition/framing: Wide landscape 3:2. Strong diagonal coastal division, hotel in the center and lower part of frame. Natural sense of drone height and dimensional terrain. One coherent full-bleed photograph.\nLighting/mood: Late afternoon natural light, warm sunlight, clear shadows, quiet premium atmosphere.\nConstraints: Entirely imaginary lodging concept, do not imitate a real Tenerife property. No close-up people, labels, typography, logos, watermarks, borders or collage.\nReturn the generated asset and its local saved file path so it can be copied into a deployment ZIP.",
+      "includedFiles": [
+        "dist/assets/hotel-640.webp",
+        "dist/assets/hotel-1280.webp"
+      ]
+    },
+    {
+      "key": "aireal-restaurant-concept",
+      "description": "Conceptual restaurant campaign photograph of grilled fish and seasonal vegetables on rustic ceramics, dark wood and terracotta linen.",
+      "width": 1536,
+      "height": 1024,
+      "prompt": "Use case: photorealistic-natural\nAsset type: illustrative restaurant portfolio campaign card for Aireal Estudio, a Tenerife creative marketing and AI studio.\nPrimary request: Create one editorial restaurant campaign photograph: a rustic contemporary dark wood table with a beautiful ceramic plate of grilled seasonal vegetables and fish, a small drinking glass, and terracotta linen.\nStyle/medium: Intimate premium Tenerife-inspired restaurant photography, appetizing real food and tactile materials.\nComposition/framing: Landscape 3:2. Carefully styled dining table, plate as main subject, natural perspective at a slightly raised dining-table angle. One coherent full-bleed photograph.\nLighting/mood: Warm natural sunlight and strong shadows.\nConstraints: Entirely conceptual scene, not a real restaurant. No recognizable logos, text, labels, people, watermarks, borders or collage.\nReturn the generated asset and its local saved file path so it can be copied into a deployment ZIP.",
+      "includedFiles": [
+        "dist/assets/restaurante-640.webp",
+        "dist/assets/restaurante-960.webp"
+      ]
+    },
+    {
+      "key": "aireal-product-concept",
+      "description": "Conceptual product still life with an unlabelled amber skincare bottle, offwhite ceramic vase, volcanic stone and burnt orange linen.",
+      "width": 1536,
+      "height": 1024,
+      "prompt": "Use case: product-mockup\nAsset type: illustrative product brand campaign portfolio card for Aireal Estudio, a Tenerife creative marketing and AI studio.\nPrimary request: Create one premium brand still-life photograph with an unlabelled amber glass skincare bottle, an offwhite ceramic vessel, and a sculptural dark stone, on a pale warm paper surface, with a slight touch of burnt orange fabric.\nStyle/medium: Tactile high-end product photography, realistic amber glass, ceramic, paper, stone and linen.\nComposition/framing: Landscape 3:2. Carefully balanced sculptural arrangement and refined natural negative space. One coherent full-bleed photograph.\nLighting/mood: Hard Mediterranean window light and an ochre shadow, warm restrained premium mood.\nConstraints: Conceptual product campaign. No text, brands, logos, labels, watermarks, people, borders or collage.\nReturn the generated asset and its local saved file path so it can be copied into a deployment ZIP.",
+      "includedFiles": [
+        "dist/assets/producto-640.webp",
+        "dist/assets/producto-960.webp"
+      ]
+    }
+  ]
+}

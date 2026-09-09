@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+*.zip
+tmp/
+
+# Documentos internos del negocio: no deben publicarse en el repositorio
+docs/MODELO_NEGOCIO.md
+docs/MODELO_NEGOCIO.pdf

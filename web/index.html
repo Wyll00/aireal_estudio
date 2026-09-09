@@ -1,412 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aireal Estudio — Fotografía y vídeo aéreo en Tenerife</title>
-<meta name="description" content="Fotografía y vídeo con dron en Tenerife para inmobiliarias, viviendas vacacionales, hoteles y restaurantes. Operador registrado en AESA. Entrega en 72 h.">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/img/monograma.png" type="image/png">
-<meta property="og:title" content="Aireal Estudio — Fotografía y vídeo aéreo en Tenerife">
-<meta property="og:description" content="Tu espacio, visto desde donde nadie lo ha mirado. Foto y vídeo con dron para turismo, inmobiliarias y hostelería en Tenerife.">
-<meta property="og:image" content="assets/img/post-promo.png"><!-- TODO: al publicar, cambiar por URL absoluta https://airealestudio.com/assets/img/post-promo.png -->
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--terracota:#BF5B33;--terracota-oscuro:#8F4022;--ocre:#C79A3C;--oliva:#6E6B4A;--crema:#F5F0E8;--crema-oscura:#EFE9DE;--tierra:#33291F;--texto:#2A241E;--muted:#8A7F6C;--borde:#DCD4C4;--panel:#FBF8F2}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Hanken Grotesk',sans-serif;background:var(--crema);color:var(--texto)}
-a{color:var(--terracota);text-decoration:none}a:hover{color:var(--terracota-oscuro)}
-.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
-@keyframes dotBounce{0%{transform:translate(-50%,0);animation-timing-function:ease-out}50%{transform:translate(-50%,-.55em);animation-timing-function:ease-in}100%{transform:translate(-50%,0)}}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.dot{position:absolute;left:50%;top:-.36em;width:.17em;height:.17em;border-radius:50%;background:var(--terracota);transform:translate(-50%,0);animation:dotBounce 1.5s infinite}
-.dot-f{animation-delay:.75s}
-.fu{animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both}
-.fu2{animation-delay:.15s}
-.fu3{animation-delay:.28s}
-@media(prefers-reduced-motion:reduce){.foto-flot,.fu,.fu2,.fu3,.foto-col{animation:none!important}}
-header{position:sticky;top:0;z-index:10;background:rgba(245,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--borde)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px;max-width:1360px}
-.mono{font-weight:300;font-size:30px;line-height:1;color:var(--texto);position:relative;display:inline-block}
-nav ul{display:flex;align-items:center;gap:34px;list-style:none;margin:0;padding:0;font-size:14.5px;font-weight:500}
-nav a{color:var(--texto)}nav a:hover{color:var(--terracota)}
-.cta{display:inline-block;background:var(--terracota);color:var(--crema);font-weight:600;font-size:15px;padding:15px 30px;border-radius:99px;transition:background .2s,transform .2s}
-.cta:hover{background:var(--terracota-oscuro);color:var(--crema);transform:translateY(-2px)}
-.cta-nav{font-size:14px;padding:11px 22px}
-.cta-nav:hover{transform:none}
-.cta-sec{display:inline-block;border:1.5px solid var(--terracota);color:var(--terracota);font-weight:600;font-size:15px;padding:13.5px 30px;border-radius:99px;transition:background .2s,color .2s}
-.cta-sec:hover{background:var(--terracota);color:var(--crema)}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:stretch;padding-top:64px;padding-bottom:88px;max-width:1360px}
-.logo-hero{font-weight:300;font-size:124px;line-height:.95;letter-spacing:.01em;color:var(--texto)}
-.logo-hero .i{position:relative;display:inline-block}
-.logo-hero-sub{font-size:24px;font-weight:600;letter-spacing:.62em;text-transform:uppercase;color:var(--muted);margin-top:12px;padding-left:4px}
-.eyebrow{display:flex;align-items:center;gap:12px}
-.eyebrow span:first-child{width:26px;height:1.5px;background:var(--terracota)}
-.eyebrow span:last-child{font-size:12.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terracota)}
-h1{font-weight:300;font-size:clamp(44px,5.4vw,74px);line-height:1.1;letter-spacing:-.015em;margin:22px 0 0;text-wrap:pretty}
-h1 .punto{color:var(--terracota)}
-.hero p{font-size:18px;line-height:1.65;color:#5C5546;max-width:58ch;margin:26px 0 0}
-.hero-botones{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
-.foto-col{align-self:stretch;display:flex;animation:fadeIn .9s ease .25s both}
-.foto-flot{position:relative;flex:1;display:flex;animation:floatY 6.5s ease-in-out 1.2s infinite}
-.foto-marco{position:absolute;inset:14px -14px -14px 14px;border:1.5px solid var(--ocre);border-radius:18px;opacity:.55}
-.foto{position:relative;flex:1;border-radius:16px;overflow:hidden;background:var(--oliva);box-shadow:0 24px 60px -24px rgba(51,41,31,.35);display:flex;align-items:center;justify-content:center;color:var(--crema);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
-.confianza{border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);background:var(--crema-oscura)}
-.confianza .items{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px;padding:20px 28px;max-width:1200px;margin:0 auto}
-.confianza .items span{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#6B6252}
-.confianza .items .sep{width:5px;height:5px;border-radius:50%;background:var(--terracota);padding:0}
-section{padding:80px 0}
-.dark{background:var(--tierra);color:var(--crema)}
-.kicker{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--terracota);margin-bottom:10px}
-h2{font-weight:300;font-size:36px;margin:0 0 36px}
-h3{font-weight:500}
-.ph{background:var(--oliva);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--crema);font-size:13px;letter-spacing:.2em;text-transform:uppercase}
-.grid3c{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:26px 22px;display:flex;flex-direction:column;gap:12px}
-.card h3{font-size:18px;margin:0}
-.card p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
-.card img{width:30px;height:30px}
-.card .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
-.card .tag{font-size:11.5px;font-weight:600;letter-spacing:.08em;color:#6B6252;background:var(--crema-oscura);border:1px solid var(--borde);border-radius:99px;padding:4px 12px}
-.card .repo{font-size:13.5px;font-weight:600}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid3 .ph{aspect-ratio:1}
-.precio-card{background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
-.precio-card.destacado{border:1.5px solid var(--terracota)}
-.precio-card .nombre{font-weight:500;font-size:19px;margin:0}
-.precio-card .precio{font-weight:300;font-size:40px;line-height:1}
-.precio-card .precio small{font-size:15px;color:var(--muted);font-weight:400}
-.precio-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5;color:#5C5546}
-.precio-card ul li::before{content:"— ";color:var(--terracota)}
-.precio-card .cta,.precio-card .cta-sec{text-align:center;margin-top:auto}
-.nota-precios{font-size:13px;color:var(--muted);margin-top:18px}
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:8px}
-.calc-campo{margin-bottom:34px}
-.calc-campo label{display:block;font-size:14.5px;color:#CFC5B0;margin-bottom:14px}
-.calc-campo .valor{font-weight:300;font-size:34px;line-height:1;color:var(--crema);margin-bottom:14px}
-.calc-campo input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;background:#4A3E30;outline:none}
-.calc-campo input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--terracota);border:3px solid var(--tierra);cursor:pointer}
-.calc-campo input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--terracota);border:3px solid var(--tierra);cursor:pointer}
-.calc-campo input[type=range]:focus-visible{box-shadow:0 0 0 3px rgba(191,91,51,.4)}
-.calc-panel{background:#2B221A;border:1px solid #4A3E30;border-radius:14px;padding:34px 32px}
-.calc-panel .etiqueta{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#B7AB94}
-.calc-panel .cifra{font-weight:300;font-size:clamp(48px,6vw,68px);line-height:1.05;color:#E58256;margin:10px 0 6px;letter-spacing:-.02em}
-.calc-panel .cifra-sub{font-size:15px;color:#CFC5B0}
-.calc-panel .cifra-sub strong{font-weight:500;color:var(--ocre)}
-.calc-panel .linea{height:1px;background:#4A3E30;margin:26px 0}
-.calc-panel .ahorro{font-size:16px;line-height:1.6;color:#CFC5B0;margin:0 0 24px}
-.calc-panel .ahorro strong{font-weight:500;color:var(--crema)}
-.nota-calc{font-size:12.5px;line-height:1.6;color:#8A7F6C;margin-top:26px;max-width:75ch}
-@media(max-width:820px){.calc{grid-template-columns:1fr;gap:34px}}
-.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:paso}
-.paso{counter-increment:paso;background:var(--panel);border:1px solid var(--borde);border-radius:10px;padding:26px 22px}
-.paso::before{content:"0" counter(paso);font-weight:300;font-size:34px;color:var(--terracota);display:block;margin-bottom:10px}
-.paso h3{font-size:17px;margin:0 0 8px}
-.paso p{font-size:14px;line-height:1.55;color:#5C5546;margin:0}
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.contact ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:16px}
-.wa{display:inline-flex;align-items:center;gap:10px;background:var(--terracota);color:var(--crema);font-weight:600;font-size:16px;padding:16px 30px;border-radius:99px;margin-bottom:18px}
-.wa:hover{background:var(--terracota-oscuro);color:var(--crema)}
-.pie{background:var(--tierra);color:var(--crema)}
-.pie .inner{max-width:1200px;margin:0 auto;padding:78px 28px 34px;display:flex;flex-direction:column;align-items:center}
-.pie .logo-pie{font-weight:300;line-height:1;color:var(--crema);font-size:60px;letter-spacing:.01em}
-.pie .logo-pie .i{position:relative;display:inline-block}
-.pie .sub{font-size:12px;font-weight:600;letter-spacing:.55em;padding-left:.55em;text-transform:uppercase;color:#B7AB94;margin-top:14px}
-.pie .tagline{font-size:13.5px;color:var(--muted);margin-top:22px;letter-spacing:.04em}
-.pie .linea{width:100%;height:1px;background:#4A3E30;margin-top:52px}
-.pie .legal{width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:22px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#B7AB94}
-.pie .legal a{color:#B7AB94}.pie .legal a:hover{color:var(--ocre)}
-.pie .legal a.ig{color:var(--ocre)}.pie .legal a.ig:hover{color:var(--crema)}
-@media(max-width:900px){
-.hero{grid-template-columns:1fr;gap:48px;padding-top:48px;padding-bottom:64px}
-.logo-hero{font-size:64px}
-.logo-hero-sub{font-size:15px}
-.foto-col{min-height:420px}
-nav ul{display:none}
-.grid3c,.grid3,.pasos,.contact{grid-template-columns:1fr}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Aireal Estudio | Marketing, contenido e IA en Tenerife</title>
+  <meta name="description" content="Contenido visual, diseño web, campañas y automatizaciones con IA para negocios en Tenerife. Una estrategia conectada, desde la primera impresión hasta la consulta.">
+  <link rel="canonical" href="https://horizoncompany.es/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://horizoncompany.es/assets/img/post-promo.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Aireal Estudio">
+  <meta property="og:title" content="Aireal Estudio | Creatividad que conecta. Inteligencia que impulsa.">
+  <meta property="og:description" content="Marketing, contenido visual y automatizaciones con IA. Desde Tenerife, para marcas con algo que contar.">
+  <meta property="og:url" content="https://horizoncompany.es/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preload" as="image" href="assets/hotel-1280.webp" imagesrcset="assets/hotel-640.webp 640w, assets/hotel-1280.webp 1280w" imagesizes="(max-width: 760px) 100vw, 50vw">
+  <script src="assets/config.js" defer></script>
+  <script src="assets/calculators.js" defer></script>
+  <script src="assets/app.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="nav-shell wrap">
+      <a class="wordmark" href="./" aria-label="Aireal Estudio, inicio">aireal<span class="wordmark-dot">.</span><small>estudio</small></a>
+      <nav id="main-nav" aria-label="Navegación principal">
+        <a href="#servicios">Qué hacemos</a><a href="#trabajo">Trabajo</a><a href="#estudio">El estudio</a><a href="#tarifas">Planes</a>
+      </nav>
+      <a class="button button-small nav-cta" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Estudio de marketing + inteligencia artificial</p>
+        <h1 id="hero-title">Tu marca,<br>con otra<br><em>perspectiva.</em></h1>
+        <p class="hero-intro">Ideas que se ven. Estrategias que conectan.<br>IA que te devuelve tiempo.</p>
+        <p class="hero-description">Unimos contenido visual, web y automatización para que tu negocio atraiga mejor y cada consulta tenga un siguiente paso.</p>
+        <div class="hero-actions"><a class="button" href="#contacto">Cuéntanos tu idea <span aria-hidden="true">↗</span></a><a class="text-link" href="#trabajo">Explora lo que podemos hacer <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-location"><span class="location-mark" aria-hidden="true">28° N / 16° O</span><span>Desde Tenerife. Con visión más allá.</span></div>
+      </div>
+      <div class="hero-visual">
+        <figure class="hero-image">
+          <img src="assets/hotel-1280.webp" srcset="assets/hotel-640.webp 640w, assets/hotel-1280.webp 1280w" sizes="(max-width:760px) 100vw, 50vw" width="1536" height="1024" alt="Concepto visual de un alojamiento junto al océano, con piscina y arquitectura costera" fetchpriority="high">
+          <figcaption><span>Una mirada diferente lo cambia todo.</span><small>Imagen conceptual generada con IA</small></figcaption>
+        </figure>
+        <div class="hero-note"><span class="note-symbol" aria-hidden="true">a<span>✳</span></span><p>Creatividad humana.<br><strong>Inteligencia aplicada.</strong></p><span class="note-index">01 / AIREAL</span></div>
+      </div>
+    </section>
+    <div class="discipline-strip" aria-label="Especialidades"><div class="wrap"><span>Estrategia</span><b aria-hidden="true">✳</b><span>Contenido</span><b aria-hidden="true">✳</b><span>Diseño web</span><b aria-hidden="true">✳</b><span>Automatización + IA</span></div></div>
 
-<header><div class="wrap nav">
-<a class="mono" href="#" aria-label="Aireal Estudio">a<span class="dot"></span></a>
-<nav><ul>
-<li><a href="#servicios">Servicios</a></li>
-<li><a href="#trabajo">Trabajo</a></li>
-<li><a href="#proyectos">Proyectos</a></li>
-<li><a href="#equipo">Equipo</a></li>
-<li><a href="#tarifas">Tarifas</a></li>
-<li><a href="#contacto">Contacto</a></li>
-</ul></nav>
-<a class="cta cta-nav" href="#contacto">Reserva tu vuelo</a>
-</div></header>
+    <section class="section wrap services" id="servicios" aria-labelledby="services-title">
+      <div class="section-heading"><p class="eyebrow">01 / Lo que hacemos</p><div><h2 id="services-title">Buenas ideas.<br><span class="muted">Con un plan detrás.</span></h2><p>Tu contenido, tu web y tus procesos deben trabajar juntos. Elegimos contigo lo que necesita tu negocio y lo convertimos en un sistema sencillo.</p></div></div>
+      <div class="service-grid">
+        <article class="service-card"><span class="service-number">01</span><svg class="service-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="6" y="12" width="36" height="27" rx="3"/><circle cx="24" cy="25" r="8"/><path d="M15 12l3-5h12l3 5"/></svg><h3>Contenido que se siente.</h3><p>Fotografía, vídeo y reels con una dirección visual coherente. Tu espacio, tu producto y la historia que merece contarse.</p><ul class="pill-list"><li>Foto + vídeo</li><li>Dron</li><li>Redes sociales</li></ul><a href="#contacto" class="service-link" data-interest="Contenido visual">Quiero dar vida a mi marca <span aria-hidden="true">↗</span></a></article>
+        <article class="service-card"><span class="service-number">02</span><svg class="service-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="8" width="38" height="31" rx="3"/><path d="M5 17h38M12 13h1m5 0h1m-6 10h10v10H13zm16 1h8m-8 5h8m-8 5h5"/></svg><h3>Webs con intención.</h3><p>Diseño, mensajes claros y una experiencia rápida en móvil. Que encontrarte sea fácil y contactar contigo lo sea todavía más.</p><ul class="pill-list"><li>Web + landing</li><li>SEO local</li><li>Reservas</li></ul><a href="#contacto" class="service-link" data-interest="Web y captación">Mi web necesita un cambio <span aria-hidden="true">↗</span></a></article>
+        <article class="service-card"><span class="service-number">03</span><svg class="service-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="11"/><circle cx="24" cy="24" r="4"/><path d="M27 21L42 6m-9 0h9v9"/></svg><h3>Marketing con dirección.</h3><p>Una oferta que se entiende, campañas con objetivos y seguimiento de las consultas. Medimos lo que ayuda a tomar decisiones.</p><ul class="pill-list"><li>Estrategia</li><li>Campañas</li><li>Medición</li></ul><a href="#contacto" class="service-link" data-interest="Estrategia y campañas">Quiero atraer mejores consultas <span aria-hidden="true">↗</span></a></article>
+        <article class="service-card service-card-accent"><span class="service-number">04</span><svg class="service-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="17" y="17" width="14" height="14" rx="2"/><path d="M24 5v12m0 14v12M5 24h12m14 0h12M11 11l8 8m10 10l8 8m0-26l-8 8M11 37l8-8"/><circle cx="24" cy="24" r="3"/></svg><h3>IA que hace sitio.</h3><p>Menos copiar, pegar y perseguir respuestas. Conectamos herramientas y usamos IA donde aporta valor, con revisión humana.</p><ul class="pill-list"><li>Automatizaciones</li><li>Asistentes</li><li>CRM</li></ul><a href="#contacto" class="service-link" data-interest="Automatización e IA">Quiero recuperar tiempo <span aria-hidden="true">↗</span></a></article>
+      </div>
+      <p class="sector-note">Especialmente para <strong>restaurantes, alojamientos y negocios de servicios.</strong> También para marcas de producto que buscan una nueva mirada.</p>
+    </section>
 
-<main>
-<section class="hero wrap">
-<div>
-<div class="fu" style="margin-bottom:40px">
-<div class="logo-hero">a<span class="i">ı<span class="dot"></span></span>real</div>
-<div class="logo-hero-sub">estudio</div>
-</div>
-<div class="eyebrow fu">
-<span></span>
-<span>Fotografía y vídeo aéreo · Tenerife</span>
-</div>
-<h1 class="fu">Tu espacio, visto desde donde nadie lo ha mirado<span class="punto">.</span></h1>
-<p class="fu fu2">Imágenes aéreas que hacen que un hotel, una propiedad o un restaurante se entiendan de un vistazo. Trabajamos en toda la isla para turismo, inmobiliarias, alojamientos y negocios locales.</p>
-<div class="hero-botones fu fu3">
-<a class="cta" href="#contacto">Reserva tu vuelo</a>
-<a class="cta-sec" href="#tarifas">Ver tarifas</a>
-</div>
-</div>
-<div class="foto-col">
-<div class="foto-flot">
-<div class="foto-marco"></div>
-<!-- TODO: sustituir por tu mejor foto aérea: dentro de .foto, <img src="assets/img/hero.jpg" alt="Vista aérea de Tenerife" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
-<div class="foto">Tu foto aérea</div>
-</div>
-</div>
-</section>
+    <section class="work-section section" id="trabajo" aria-labelledby="work-title">
+      <div class="wrap"><div class="section-heading"><p class="eyebrow">02 / Posibilidades, en imágenes</p><div><h2 id="work-title">Así podría verse<br><em>tu próximo paso.</em></h2><p>Tres conceptos para imaginar lo que podemos construir contigo. Son ejemplos creativos con imágenes generadas por IA; no son encargos ni resultados de clientes.</p></div></div>
+      <div class="work-grid">
+        <article class="work-card work-wide"><a href="concepto-alojamiento.html" class="work-image"><img src="assets/hotel-1280.webp" srcset="assets/hotel-640.webp 640w, assets/hotel-1280.webp 1280w" sizes="(max-width:760px) 100vw, 66vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Alojamiento costero imaginario visto desde el aire"><span class="image-badge">Concepto / Turismo</span><span class="image-arrow" aria-hidden="true">↗</span></a><div class="work-caption"><h3><a href="concepto-alojamiento.html">Una estancia empieza antes de llegar.</a></h3><span>Dirección visual · Web · Reservas</span></div></article>
+        <article class="work-card"><a href="concepto-restaurante.html" class="work-image work-portrait"><img src="assets/restaurante-960.webp" srcset="assets/restaurante-640.webp 640w, assets/restaurante-960.webp 960w" sizes="(max-width:760px) 100vw, 33vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Concepto de fotografía gastronómica con luz cálida y una mesa de restaurante"><span class="image-badge">Concepto / Gastronomía</span><span class="image-arrow" aria-hidden="true">↗</span></a><div class="work-caption"><h3><a href="concepto-restaurante.html">El sabor también entra por la imagen.</a></h3><span>Fotografía · Reels · Captación</span></div></article>
+        <article class="work-card product-work"><a href="concepto-marca.html" class="work-image"><img src="assets/producto-960.webp" srcset="assets/producto-640.webp 640w, assets/producto-960.webp 960w" sizes="(max-width:760px) 100vw, 50vw" width="1536" height="1024" loading="lazy" decoding="async" alt="Bodegón conceptual de producto con botella de vidrio ámbar, cerámica y piedra"><span class="image-badge">Concepto / Producto</span><span class="image-arrow" aria-hidden="true">↗</span></a><div class="work-caption"><h3><a href="concepto-marca.html">Pequeños detalles. Una marca propia.</a></h3><span>Contenido de marca · Campaña · Seguimiento</span></div></article>
+        <div class="work-statement"><span aria-hidden="true">✳</span><p>La tecnología ayuda.<br><em>La mirada lo diferencia.</em></p><a href="#contacto" class="text-link">Demos forma a tu proyecto <span aria-hidden="true">↗</span></a></div>
+      </div></div>
+    </section>
 
-<div class="confianza"><div class="items">
-<span>Operador registrado AESA</span>
-<span class="sep"></span>
-<span>Seguro de RC</span>
-<span class="sep"></span>
-<span>Entrega en 72 h</span>
-<span class="sep"></span>
-<span>Toda la isla de Tenerife</span>
-</div></div>
+    <section class="section ai-section wrap" aria-labelledby="ai-title">
+      <div class="ai-copy"><p class="eyebrow">03 / Inteligencia aplicada</p><h2 id="ai-title">Tu negocio sigue.<br><em>Lo repetitivo, solo.</em></h2><p>Una consulta no debería perderse entre mensajes. Diseñamos pequeños flujos para ordenar contactos, preparar respuestas y recordarte el siguiente paso.</p><p class="muted">Empezamos con una tarea concreta, probamos con datos de ejemplo y dejamos una salida a una persona. El criterio sigue siendo tuyo.</p><a class="text-link" href="#calculadora">Ponle números al tiempo <span aria-hidden="true">↘</span></a></div>
+      <div class="workflow" aria-label="Ejemplo de seguimiento de una consulta"><div class="workflow-top"><span>De la consulta al siguiente paso</span><span class="small-label">Ejemplo de flujo</span></div><ol><li><span class="flow-number">1</span><div><strong>Entra una consulta</strong><p>Desde el formulario de tu negocio.</p></div><span aria-hidden="true">↙</span></li><li><span class="flow-number">2</span><div><strong>Se organiza y prepara</strong><p>Contacto en tu CRM y un borrador de respuesta.</p></div></li><li class="flow-review"><span class="flow-number">3</span><div><strong>Tú revisas y decides</strong><p>Apruebas la respuesta o atiendes personalmente.</p></div><span class="review-tag">Control humano</span></li><li><span class="flow-number">4</span><div><strong>El seguimiento queda preparado</strong><p>Un recordatorio para que nada se quede pendiente.</p></div></li></ol><p class="workflow-foot">Se configura para tus herramientas y se presupuesta según el alcance.</p></div>
+    </section>
 
-<section id="servicios"><div class="wrap">
-<div class="kicker">Servicios</div>
-<h2>Qué hacemos</h2>
-<div class="grid3c">
-<div class="card"><img src="assets/icons/inmobiliaria.svg" alt=""><h3>Inmobiliario</h3><p>La propiedad, la parcela y el entorno en una sola imagen. Vende contexto, no solo metros.</p></div>
-<div class="card"><img src="assets/icons/alojamiento.svg" alt=""><h3>Vivienda vacacional y hoteles</h3><p>Anuncios que se reservan solos cuando se ven desde arriba. Foto, vídeo y tour vertical para Airbnb y Booking.</p></div>
-<div class="card"><img src="assets/icons/restaurante.svg" alt=""><h3>Restaurantes y negocios</h3><p>Terrazas, ubicación y ambiente: el motivo para elegirte antes de llegar.</p></div>
-<div class="card"><img src="assets/icons/reel.svg" alt=""><h3>Vídeo y reels</h3><p>Piezas cortas listas para Instagram y TikTok, con edición y color incluidos.</p></div>
-<div class="card"><img src="assets/icons/video.svg" alt=""><h3>Gestión de redes</h3><p>Nos encargamos de tu Instagram con contenido grabado por nosotros, cada mes, sin que muevas un dedo.</p></div>
-<div class="card"><img src="assets/icons/entrega.svg" alt=""><h3>Webs con reserva directa</h3><p>Tu propia web con motor de reservas y pago online. Cada reserva directa es comisión que no pagas a las plataformas.</p></div>
-</div>
-</div></section>
+    <section class="studio-section section" id="estudio" aria-labelledby="studio-title"><div class="wrap studio-grid"><div><p class="eyebrow">04 / El estudio</p><h2 id="studio-title">Cerca de tu negocio.<br><em>Dentro de la idea.</em></h2></div><div><p class="studio-lead">Aireal une dos formas de mirar: la de quien cuenta una historia con imágenes y la de quien construye cómo funciona por dentro.</p><p>Trabajamos desde Tenerife en proyectos de contenido, web y automatización. La estrategia y la ejecución comparten conversación, para que el resultado tenga sentido de principio a fin.</p><div class="studio-values"><span>Trato directo</span><span>Alcance claro</span><span>Revisión humana</span></div></div></div>
+      <div class="wrap"><details class="equipment" id="equipo"><summary>Con qué damos forma a las ideas <span aria-hidden="true">+</span></summary><p>Fotografía con Nikon Z50, vídeo estabilizado, captura aérea y sonido inalámbrico. Elegimos el equipo según la pieza, no al revés. Las tomas con dron se valoran según ubicación, condiciones y autorizaciones necesarias.</p></details>
+      <div class="dev-work" id="proyectos"><div><p class="eyebrow">También construimos software</p><p>Proyectos de desarrollo que ya aparecen en nuestro recorrido.</p></div><a href="https://github.com/Wyll00/Lumbress" target="_blank" rel="noopener noreferrer"><strong>Lumbress <span aria-hidden="true">↗</span></strong><span>Biblioteca personal / React + Node.js</span></a><a href="https://github.com/Wyll00/pabilo-velas" target="_blank" rel="noopener noreferrer"><strong>Pábilo Velas <span aria-hidden="true">↗</span></strong><span>Web de marca / Astro</span></a><a href="https://github.com/Wyll00/Habitos_Game" target="_blank" rel="noopener noreferrer"><strong>Hábitos Game <span aria-hidden="true">↗</span></strong><span>Aplicación de hábitos / Python</span></a></div></div>
+    </section>
 
-<section id="trabajo" style="background:var(--crema-oscura)"><div class="wrap">
-<div class="kicker">Trabajo</div>
-<h2>Últimos vuelos</h2>
-<!-- TODO: sustituir cada bloque por <img> o <video> reales del portfolio -->
-<div class="grid3">
-<div class="ph">Tu foto aérea</div>
-<div class="ph" style="background:var(--terracota)">Tu foto aérea</div>
-<div class="ph" style="background:var(--tierra)">Tu foto aérea</div>
-</div>
-</div></section>
+    <section class="section wrap pricing-section" id="tarifas" aria-labelledby="pricing-title"><div class="section-heading"><p class="eyebrow">05 / Una forma de empezar</p><div><h2 id="pricing-title">Ambición a tu medida.<br><span class="muted">Alcance, por escrito.</span></h2><p>Planes mensuales para construir continuidad. También hacemos proyectos puntuales. Elegimos el punto de partida después de entender tu negocio.</p></div></div>
+      <div class="pricing-grid">
+        <article class="price-card"><p class="plan-label">Para dar consistencia</p><h3>Presencia</h3><p class="price">590 €<span>/mes</span></p><p class="setup">Puesta en marcha: 250 €</p><p class="plan-description">Una marca activa con contenido propio y una línea visual reconocible.</p><ul class="check-list"><li>1 sesión mensual de hasta 90 min</li><li>4 reels de hasta 30 s + 4 piezas gráficas</li><li>Calendario y publicación en 1 red</li><li>Informe y reunión mensual de 30 min</li></ul><a class="button button-outline" href="#contacto" data-interest="Plan Presencia">Empezar con Presencia <span aria-hidden="true">↗</span></a></article>
+        <article class="price-card featured"><span class="featured-label">Contenido + captación</span><p class="plan-label">Para conectar las piezas</p><h3>Impulso</h3><p class="price">990 €<span>/mes</span></p><p class="setup">Puesta en marcha: 650 €</p><p class="plan-description">Contenido, una página de captación y una campaña con seguimiento.</p><ul class="check-list"><li>1 sesión de 2 h; 6 reels + 4 piezas gráficas</li><li>Publicación adaptada a 2 redes</li><li>1 landing inicial + contacto conectado al CRM</li><li>Gestión de 1 campaña en Meta Ads</li><li>Informe y reunión mensual de 45 min</li></ul><a class="button" href="#contacto" data-interest="Plan Impulso">Dar el siguiente paso <span aria-hidden="true">↗</span></a></article>
+        <article class="price-card"><p class="plan-label">Para recuperar tiempo</p><h3>Conecta</h3><p class="price">1.490 €<span>/mes</span></p><p class="setup">Puesta en marcha: 1.250 €</p><p class="plan-description">La base de Impulso, con automatizaciones para tu operativa diaria.</p><ul class="check-list"><li>Todo el alcance de Impulso</li><li>Hasta 2 flujos de hasta 5 pasos cada uno</li><li>Una integración de IA si el caso lo requiere</li><li>Supervisión y hasta 2 h de ajustes al mes</li><li>Formación inicial y guía de funcionamiento</li></ul><a class="button button-outline" href="#contacto" data-interest="Plan Conecta">Conectar mi negocio <span aria-hidden="true">↗</span></a></article>
+      </div>
+      <p class="pricing-note">Importes orientativos antes de los impuestos aplicables. Publicidad, licencias, consumos de IA y herramientas de terceros se pagan aparte. Una ronda de cambios por entrega. Arranque recomendado de 3 meses, condiciones en la propuesta. Producción presencial en Tenerife; desplazamientos y alcance se confirman antes de contratar.</p>
+      <div class="project-prices"><div><h3>¿Una necesidad concreta?</h3><p>También podemos empezar por un proyecto.</p></div><ul><li>Sesión de contenido <strong>desde 350 €</strong></li><li>Web corporativa <strong>desde 1.200 €</strong></li><li>Automatización de un proceso <strong>desde 750 €</strong></li></ul><a href="#contacto" class="text-link" data-interest="Proyecto puntual">Pedir propuesta <span aria-hidden="true">↗</span></a></div>
+    </section>
 
-<section id="proyectos"><div class="wrap">
-<div class="kicker">Proyectos</div>
-<h2>Cosas que hemos construido</h2>
-<div class="grid3c">
-<div class="card">
-<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10.5 4 8 3.5 4 3.5v14c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-14c-4 0-6.5.5-8 2z"/><path d="M12 5.5v14"/></svg>
-<h3>Lumbress</h3>
-<p>Tu biblioteca personal en una app: catálogo de libros, estadísticas de lectura, comunidad y calendario. Con cuentas de usuario y sesión segura.</p>
-<div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span></div>
-<a class="repo" href="https://github.com/Wyll00/Lumbress">Ver en GitHub →</a>
-</div>
-<div class="card">
-<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 3.5 6 6.3 6 10a6 6 0 0 1-12 0c0-2.2 1-4 2.4-5.6.5 1.1 1.2 2 2.2 2.6C10.2 7.8 11 5.4 12 3z"/></svg>
-<h3>Pábilo Velas</h3>
-<p>Web de marca para velas artesanales — «El fuego de los pequeños placeres». Identidad cálida, carrusel de producto y carga ligera.</p>
-<div class="tags"><span class="tag">Astro</span><span class="tag">Cloudflare</span></div>
-<a class="repo" href="https://github.com/Wyll00/pabilo-velas">Ver en GitHub →</a>
-</div>
-<div class="card">
-<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r=".8"/></svg>
-<h3>Sistema CMS</h3>
-<p>App de adiestramiento con disciplina militar: misiones diarias, hábitos, entrenamientos y bitácora. Multiusuario e instalable en el móvil.</p>
-<div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">PWA</span></div>
-<a class="repo" href="https://github.com/Wyll00/Habitos_Game">Ver en GitHub →</a>
-</div>
-</div>
-</div></section>
+    <section class="calculator-section section" id="calculadora" aria-labelledby="calc-title"><div class="wrap calculator-grid"><div><p class="eyebrow">06 / Hagamos números</p><h2 id="calc-title">Menos intuición.<br><em>Más perspectiva.</em></h2><p>Explora dos escenarios antes de decidir: tiempo que podrías liberar y comisiones que podrías evitar con reservas directas.</p><p class="muted">Son simulaciones con tus supuestos, no promesas de ahorro ni de rentabilidad.</p></div><div class="calculator">
+      <div class="calc-tabs" role="tablist" aria-label="Tipo de cálculo"><button id="tab-time" type="button" role="tab" aria-selected="true" aria-controls="panel-time" data-tab="time">Tiempo y automatización</button><button id="tab-booking" type="button" role="tab" aria-selected="false" aria-controls="panel-booking" tabindex="-1" data-tab="booking">Reservas directas</button></div>
+      <div id="panel-time" role="tabpanel" aria-labelledby="tab-time"><div class="range-control"><label for="hours">Horas repetitivas por semana <output for="hours" id="hours-label">8 h</output></label><input id="hours" type="range" min="0" max="40" value="8" step="1"></div><div class="range-control"><label for="automation">Parte que podrías automatizar <output for="automation" id="automation-label">40 %</output></label><input id="automation" type="range" min="0" max="90" value="40" step="5"></div><div class="calc-inputs"><label for="hour-value">Valor de una hora (€)<input id="hour-value" type="number" min="0" max="1000" value="20" step="1" inputmode="decimal"></label><label for="monthly-cost">Coste mensual de la solución (€)<input id="monthly-cost" type="number" min="0" max="50000" value="149" step="1" inputmode="decimal"></label></div><div class="calc-result"><span>Capacidad que podrías liberar al mes</span><strong id="time-result">13,9 h</strong><p id="time-value">277 € de valor teórico; 128 € tras el coste indicado.</p></div><p class="calc-note">52 semanas / 12 meses. El valor del tiempo no equivale a dinero ingresado. Añade licencias, mantenimiento y consumos al coste mensual; la implantación inicial no está incluida.</p></div>
+      <div id="panel-booking" role="tabpanel" aria-labelledby="tab-booking" hidden><div class="range-control"><label for="revenue">Facturación anual del alojamiento <output for="revenue" id="revenue-label">30.000 €</output></label><input id="revenue" type="range" min="0" max="250000" value="30000" step="1000"></div><div class="range-control"><label for="direct-share">Reservas que pasarían a ser directas <output for="direct-share" id="share-label">25 %</output></label><input id="direct-share" type="range" min="0" max="100" value="25" step="5"></div><div class="calc-inputs"><label for="commission">Comisión actual (%)<input id="commission" type="number" min="0" max="50" value="15" step="0.1" inputmode="decimal"></label><label for="payment-fee">Coste variable directo (%)<input id="payment-fee" type="number" min="0" max="50" value="2" step="0.1" inputmode="decimal"></label><label for="booking-cost">Costes fijos directos al año (€)<input id="booking-cost" type="number" min="0" max="100000" value="240" step="1" inputmode="decimal"></label></div><div class="calc-result"><span>Diferencia anual estimada</span><strong id="booking-result">735 €</strong><p id="booking-value">975 € en comisiones evitadas, antes de 240 € de costes fijos.</p></div><p class="calc-note">Facturación × cuota directa × (comisión − coste variable) − costes fijos. Valores de ejemplo, no tarifas de plataformas. Añade motor de reservas, web y captación; la inversión inicial y los impuestos quedan fuera.</p></div>
+      <noscript><p>Activa JavaScript para modificar los escenarios. Las cifras visibles corresponden al ejemplo inicial.</p></noscript>
+    </div></div></section>
 
-<section id="equipo" style="background:var(--crema-oscura)"><div class="wrap">
-<div class="kicker">Equipo</div>
-<h2>El equipo con el que trabajamos</h2>
-<div class="grid3c">
-<div class="card"><img src="assets/icons/dron.svg" alt=""><h3>DJI Flip</h3><p>Dron plegable con cámara 4K. Pesa menos de 250 g: la categoría que permite volar en más sitios, siempre con licencia y seguro.</p></div>
-<div class="card"><img src="assets/icons/foto.svg" alt=""><h3>Nikon Z50</h3><p>Cámara mirrorless para fotografía y vídeo de alta calidad, en interiores y exteriores.</p></div>
-<div class="card"><img src="assets/icons/video.svg" alt=""><h3>DJI Osmo Pocket 4</h3><p>Creator Combo de DJI: cámara estabilizada con pack completo de creador. Tomas en movimiento fluidas, ideales para tours y reels.</p></div>
-<div class="card"><img src="assets/icons/reel.svg" alt=""><h3>iPhone 17 y 13</h3><p>Rodaje ágil en vertical y segunda cámara: contenido nativo para Instagram y TikTok.</p></div>
-<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg><h3>Sonido inalámbrico</h3><p>Hollyland Lark M2 y DJI Mic Mini: voz limpia en entrevistas, restaurantes y vídeo corporativo.</p></div>
-<div class="card"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#BF5B33" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="11" rx="2"/><path d="M2 19h20"/></svg><h3>Edición y postproducción</h3><p>Galaxy Book 5 Pro y Galaxy Tab S9 FE: edición, color y entrega lista para publicar en 72 h.</p></div>
-</div>
-</div></section>
+    <section class="section wrap process-section" aria-labelledby="process-title"><div class="section-heading"><p class="eyebrow">07 / Así trabajamos</p><div><h2 id="process-title">De la primera idea<br>a algo que funciona.</h2></div></div><ol class="process-list"><li><span>01</span><h3>Entendemos</h3><p>Tu negocio, tu cliente y el problema que merece resolverse primero.</p></li><li><span>02</span><h3>Enfocamos</h3><p>Una propuesta con entregables, calendario, coste y una métrica útil.</p></li><li><span>03</span><h3>Construimos</h3><p>Grabamos, diseñamos o conectamos. Revisas antes de publicar o activar.</p></li><li><span>04</span><h3>Aprendemos</h3><p>Medimos lo ocurrido y elegimos juntos el siguiente ajuste.</p></li></ol></section>
 
-<section id="tarifas"><div class="wrap">
-<div class="kicker">Tarifas</div>
-<h2>Precios claros, sin sorpresas</h2>
-<div class="grid3c">
-<div class="precio-card">
-<h3 class="nombre">Pack Propiedad</h3>
-<div class="precio">desde 250&nbsp;€ <small>/ sesión</small></div>
-<ul>
-<li>20–30 fotos editadas</li>
-<li>Vídeo de 60–90 s (dron + interior)</li>
-<li>Entrega en 72 h</li>
-<li>Premium: tour vertical + fotos twilight, 400 €</li>
-</ul>
-<a class="cta-sec" href="#contacto">Pedir fecha</a>
-</div>
-<div class="precio-card destacado">
-<h3 class="nombre">Reel para tu negocio</h3>
-<div class="precio">desde 350&nbsp;€ <small>/ sesión</small></div>
-<ul>
-<li>Media jornada de rodaje</li>
-<li>Vídeo 30–60 s con música y rótulos</li>
-<li>Formato vertical listo para redes</li>
-<li>Pack 3 reels en una sesión: 750 €</li>
-</ul>
-<a class="cta" href="#contacto">Pedir fecha</a>
-</div>
-<div class="precio-card">
-<h3 class="nombre">Tu contenido, cada mes</h3>
-<div class="precio">desde 300&nbsp;€ <small>/ mes</small></div>
-<ul>
-<li>Publicaciones mensuales con material propio</li>
-<li>Gestión de perfiles y reseñas</li>
-<li>Planes con rodaje mensual incluido</li>
-<li>Sin permanencias largas: 3 meses</li>
-</ul>
-<a class="cta-sec" href="#contacto">Hablemos</a>
-</div>
-</div>
-<p class="nota-precios">Precios sin IGIC (7 %). Desplazamiento incluido en toda la isla de Tenerife. Webs con motor de reserva directa: presupuesto a medida desde 800 €. <a href="#calculadora">Mira cuánto pagas de comisiones →</a></p>
-</div></section>
+    <section class="faq-section section wrap" aria-labelledby="faq-title"><div><p class="eyebrow">Antes de empezar</p><h2 id="faq-title">Las dudas,<br><em>sobre la mesa.</em></h2></div><div class="faq-list"><details><summary>¿Necesito marketing, una web o IA?<span aria-hidden="true">+</span></summary><p>Primero vemos dónde se atasca tu negocio: visibilidad, consultas, conversión o tareas internas. Podemos empezar por una sesión de contenido o un solo proceso. No necesitas contratarlo todo.</p></details><details><summary>¿La IA responde sola a mis clientes?<span aria-hidden="true">+</span></summary><p>Depende del flujo que acordemos. Nuestra base es preparar respuestas con información aprobada y revisión humana. Cualquier envío automático se define y prueba expresamente, con límites y una vía para hablar con una persona.</p></details><details><summary>¿Los trabajos de las imágenes son clientes reales?<span aria-hidden="true">+</span></summary><p>No. Los tres trabajos destacados son conceptos ilustrativos con imágenes generadas por IA. Muestran una dirección creativa posible. Los repositorios enlazados corresponden a los proyectos de desarrollo que ya mostramos por separado.</p></details><details><summary>¿Qué no incluyen las mensualidades?<span aria-hidden="true">+</span></summary><p>La inversión en anuncios, dominio, hosting, licencias, consumo de APIs e IA, atención diaria de mensajes, rodajes adicionales y trabajos fuera del alcance. Los costes se detallan antes de contratar; el material se entrega con una ronda de cambios.</p></details><details><summary>¿Trabajáis solo en Tenerife?<span aria-hidden="true">+</span></summary><p>La producción presencial parte de Tenerife. Para diseño web, estrategia y automatización podemos trabajar a distancia. Un rodaje fuera de la isla se valora por separado.</p></details><details><summary>¿Cuándo puedo empezar y qué pasa si quiero parar?<span aria-hidden="true">+</span></summary><p>Confirmamos disponibilidad y calendario con cada propuesta. Recomendamos un primer ciclo de tres meses para los planes; la duración, cancelación y entrega de accesos se acuerdan por escrito. Tus cuentas deben estar a tu nombre.</p></details></div></section>
 
-<section id="calculadora" class="dark"><div class="wrap">
-<div class="kicker" style="color:var(--ocre)">Reservas directas</div>
-<h2 style="color:var(--crema)">¿Sabes cuánto dejas en comisiones?</h2>
-<p style="color:#CFC5B0;line-height:1.6;max-width:56ch;margin:-20px 0 40px">Airbnb y Booking se llevan su parte de cada reserva, todo el año. Mueve los datos de tu alojamiento y te lo enseñamos.</p>
-
-<div class="calc">
-<div>
-<div class="calc-campo">
-<label for="facturacion">Lo que factura tu alojamiento al año</label>
-<div class="valor" id="out-facturacion">30.000 €</div>
-<input type="range" id="facturacion" min="5000" max="150000" step="1000" value="30000">
-</div>
-<div class="calc-campo" style="margin-bottom:0">
-<label for="comision">Comisión media de las plataformas</label>
-<div class="valor" id="out-comision">15 %</div>
-<input type="range" id="comision" min="8" max="22" step="0.5" value="15">
-</div>
-</div>
-
-<div class="calc-panel">
-<div class="etiqueta">Cada año pagas en comisiones</div>
-<div class="cifra" id="cifra-anual" aria-live="polite">4.500 €</div>
-<div class="cifra-sub">En cinco años son <strong id="cifra-cinco">22.500 €</strong></div>
-<div class="linea"></div>
-<p class="ahorro">Si solo <strong>una de cada cuatro</strong> reservas entrara por tu propia web, te ahorrarías <strong id="cifra-ahorro">1.013 €</strong> cada año.</p>
-<a class="cta" href="#contacto">Quiero mi web con reservas directas</a>
-</div>
-</div>
-
-<p class="nota-calc">Cálculo orientativo. Las comisiones varían según la plataforma y el plan contratado: Booking suele moverse entre el 15 % y el 18 %, y en Airbnb depende de si la paga solo el anfitrión o se reparte con el huésped. En el ahorro ya está descontado el coste de la pasarela de pago de las reservas directas (en torno al 1,5 %).</p>
-</div></section>
-
-<section style="background:var(--crema-oscura)"><div class="wrap">
-<div class="kicker">Proceso</div>
-<h2>Así de simple</h2>
-<div class="pasos">
-<div class="paso"><h3>Cuéntanos qué quieres mostrar</h3><p>Escríbenos por WhatsApp. Te respondemos en menos de 24 h con propuesta y fecha de vuelo.</p></div>
-<div class="paso"><h3>Volamos y grabamos</h3><p>Sesión planificada, con permisos de vuelo y seguro en regla. Tú solo abres la puerta.</p></div>
-<div class="paso"><h3>Recibes tu material en 72 h</h3><p>Editado, con color y listo para publicar en tu anuncio o en tus redes.</p></div>
-</div>
-</div></section>
-
-<section id="contacto" class="dark"><div class="wrap">
-<div class="contact">
-<div>
-<div class="kicker" style="color:var(--ocre)">Contacto</div>
-<h2 style="color:var(--crema)">Cuéntanos qué quieres mostrar</h2>
-<p style="color:#CFC5B0;line-height:1.6">Respondemos en menos de 24 h con propuesta y fecha de vuelo.</p>
-</div>
-<div>
-<!-- TODO: poner tu número real en los DOS sitios (enlace wa.me y texto visible) -->
-<a class="wa" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20v%C3%ADdeo%20a%C3%A9reo">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L4 20l.9-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
-Escríbenos por WhatsApp</a>
-<ul>
-<li><a href="tel:+34600000000" style="color:var(--crema)">+34 600 000 000</a></li>
-<!-- TODO: cuando actives el correo del dominio, cambiar por hola@airealestudio.com -->
-<li><a href="mailto:williamluisgonzalez@gmail.com" style="color:var(--crema)">williamluisgonzalez@gmail.com</a></li>
-<li><a href="https://instagram.com/airealestudio" style="color:var(--ocre)">@airealestudio</a></li>
-</ul>
-</div>
-</div>
-</div></section>
-</main>
-
-<footer class="pie">
-<div class="inner">
-<div class="logo-pie">a<span class="i">ı<span class="dot dot-f"></span></span>real</div>
-<div class="sub">estudio</div>
-<div class="tagline">Fotografía y vídeo aéreo · Tenerife</div>
-<div class="linea"></div>
-<div class="legal">
-<span>© 2026 Aireal Estudio</span>
-<div style="display:flex;flex-wrap:wrap;gap:24px">
-<!-- TODO: cuando actives el correo del dominio, cambiar por hola@airealestudio.com -->
-<a href="mailto:williamluisgonzalez@gmail.com">williamluisgonzalez@gmail.com</a>
-<a class="ig" href="https://instagram.com/airealestudio">@airealestudio</a>
-<a href="aviso-legal.html">Aviso legal</a>
-<a href="privacidad.html">Privacidad</a>
-<a href="cookies.html">Cookies</a>
-</div>
-</div>
-</div>
-</footer>
-
-<script>
-(function(){
-  var facturacion = document.getElementById('facturacion');
-  var comision = document.getElementById('comision');
-  if(!facturacion || !comision) return;
-
-  var PASARELA = 1.5;   // coste de la pasarela de pago en una reserva directa
-  var DIRECTAS = 0.25;  // una de cada cuatro reservas
-
-  // Punto de millar siempre, tambien en cifras de cuatro digitos
-  function euros(n){
-    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.') + ' €';
-  }
-
-  function actualizar(){
-    var anual = Number(facturacion.value);
-    var tasa = Number(comision.value);
-    var comisionAnual = anual * tasa / 100;
-    var ahorro = anual * DIRECTAS * (tasa - PASARELA) / 100;
-
-    document.getElementById('out-facturacion').textContent = euros(anual);
-    document.getElementById('out-comision').textContent = tasa.toLocaleString('es-ES') + ' %';
-    document.getElementById('cifra-anual').textContent = euros(comisionAnual);
-    document.getElementById('cifra-cinco').textContent = euros(comisionAnual * 5);
-    document.getElementById('cifra-ahorro').textContent = euros(ahorro);
-  }
-
-  facturacion.addEventListener('input', actualizar);
-  comision.addEventListener('input', actualizar);
-  actualizar();
-})();
-</script>
-
+    <section class="contact-section section" id="contacto" aria-labelledby="contact-title"><div class="wrap contact-grid"><div><p class="eyebrow">08 / El siguiente paso</p><h2 id="contact-title">Tu idea merece<br><em>una conversación.</em></h2><p>Cuéntanos qué haces y qué te gustaría mejorar. Con eso podemos empezar.</p><a class="contact-email" href="mailto:williamluisgonzalez@gmail.com" data-email>williamluisgonzalez@gmail.com</a><div class="contact-channels"><a href="https://instagram.com/airealestudio" target="_blank" rel="noopener noreferrer" data-instagram>Instagram <span aria-hidden="true">↗</span></a><a data-whatsapp hidden>WhatsApp <span aria-hidden="true">↗</span></a><a data-booking hidden>Elegir una fecha <span aria-hidden="true">↗</span></a></div><p class="contact-location">Tenerife, Islas Canarias · Proyectos en remoto</p></div><form id="contact-form" class="contact-form"><h3>Empecemos por aquí</h3><div class="form-row"><label for="name">Tu nombre<input id="name" name="name" autocomplete="name" required maxlength="100" placeholder="¿Cómo te llamas?"></label><label for="email">Tu email<input id="email" name="email" type="email" autocomplete="email" required maxlength="160" placeholder="tu@negocio.com"></label></div><label for="business">Tu negocio o web <span class="optional">(opcional)</span><input id="business" name="business" autocomplete="organization" maxlength="160" placeholder="Nombre o dirección de tu web"></label><label for="interest">¿Por dónde empezamos?<select id="interest" name="interest"><option>Aún no lo tengo claro</option>Contenido visual</option>Web y captación</option>Estrategia y campañas</option>Automatización e IA</option>Plan Presencia</option>Plan Impulso</option>Plan Conecta</option>Proyecto puntual</option></select></label><label for="message">¿Qué te gustaría mejorar?<textarea id="message" name="message" required minlength="10" maxlength="1500" rows="3" placeholder="Por ejemplo: me llegan consultas, pero no tengo tiempo para hacer seguimiento."></textarea></label><label class="checkbox-label"><input type="checkbox" id="privacy" required><span>He leído la <a href="privacidad.html">información de privacidad</a>.</span></label><button class="button button-light" type="submit" id="prepare-brief" disabled>Preparar mi consulta <span aria-hidden="true">↗</span></button><p class="form-help">Se prepara un email para que lo revises y lo envíes desde tu correo. Estos datos no se guardan en la web.</p><noscript><p>Para contactar sin JavaScript, escribe a <a href="mailto:williamluisgonzalez@gmail.com">williamluisgonzalez@gmail.com</a>.</p></noscript><div class="contact-result" id="contact-result" hidden><p id="contact-status" role="status" aria-live="polite"></p><div class="contact-result-actions"><a id="open-email" class="button button-light">Abrir mi correo <span aria-hidden="true">↗</span></a><button type="button" id="copy-brief" class="text-button">Copiar consulta</button><button type="button" id="download-brief" class="text-button">Descargar texto</button></div><details><summary>Ver el texto preparado</summary><pre id="brief-preview"></pre></details></div></form></div></section>
+  </main>
+  <footer class="site-footer wrap"><div class="footer-top"><a class="wordmark footer-wordmark" href="./" aria-label="Aireal Estudio, inicio">aireal<span class="wordmark-dot">.</span><small>estudio</small></a><p>Creatividad con intención.<br>Inteligencia con criterio.</p><a href="#contenido" class="back-top">Volver arriba <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© <span data-year>2026</span> Aireal Estudio</span><nav aria-label="Información legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a></nav><span>Hecho con perspectiva.</span></div></footer>
 </body>
 </html>
