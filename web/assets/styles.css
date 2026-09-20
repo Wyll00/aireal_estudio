@@ -31,3 +31,9 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
 @media(max-width:1150px){.hero h1{font-size:clamp(2.6rem,5vw,3.6rem)}}
 @media(max-width:760px){.hero h1{font-size:clamp(2.4rem,8.2vw,3.5rem);max-width:520px}}
 @media(max-width:430px){.hero h1{font-size:clamp(2.1rem,9.4vw,2.9rem)}}
+
+.work-extra{margin-top:76px;padding-top:46px;border-top:1px solid var(--line);margin-bottom:42px;max-width:640px}
+.work-extra .eyebrow{margin-bottom:18px}
+.work-extra h3{font-size:1.85rem;letter-spacing:-.03em;margin-bottom:16px}
+.work-extra>p:last-child{color:var(--muted);font-size:1.02rem;line-height:1.65}
+@media(max-width:760px){.work-extra{margin-top:54px;padding-top:34px;margin-bottom:32px}.work-extra h3{font-size:1.65rem}}
