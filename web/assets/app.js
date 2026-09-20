@@ -50,18 +50,61 @@
   const form = document.getElementById('contact-form');
   let brief = '';
   if (form) {
-    // Siempre se cancela el envío nativo: no existe endpoint ni se ponen datos personales en la URL.
-    form.addEventListener('submit', event => {
+    // Si hay endpoint configurado, la consulta se envía y se confirma en pantalla.
+    // Si no lo hay, o si el envío falla, se prepara un borrador para el correo del visitante.
+    const endpoint = safeHttps(config.formEndpoint || '');
+    const formKey = String(config.formKey || '').trim();
+    const submitButton = document.getElementById('prepare-brief');
+    const actions = document.querySelector('.contact-result-actions');
+    const formHelp = document.querySelector('.form-help');
+    if (endpoint) {
+      submitButton.innerHTML = 'Enviar consulta <span aria-hidden="true">↗</span>';
+      if (formHelp) formHelp.textContent = 'Recibimos tu consulta al momento y te respondemos en menos de 24 h. Solo usamos tus datos para contestarte.';
+    }
+
+    const prepararBorrador = (get, aviso) => {
+      brief = ['Hola, Aireal Estudio:', '', 'Nombre: ' + get('name'), 'Email: ' + get('email'), 'Negocio o web: ' + (get('business') || 'No indicado'), 'Interés: ' + get('interest'), '', get('message')].join('\n');
+      document.getElementById('open-email').href = 'mailto:' + email + '?subject=' + encodeURIComponent('Consulta · ' + get('interest')) + '&body=' + encodeURIComponent(brief);
+      document.getElementById('brief-preview').textContent = brief;
+      if (actions) actions.hidden = false;
+      document.getElementById('contact-result').hidden = false;
+      put('contact-status', aviso);
+      document.getElementById('open-email').focus();
+    };
+
+    form.addEventListener('submit', async event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
       const data = new FormData(form);
       const get = name => String(data.get(name) || '').trim();
-      brief = ['Hola, Aireal Estudio:', '', 'Nombre: ' + get('name'), 'Email: ' + get('email'), 'Negocio o web: ' + (get('business') || 'No indicado'), 'Interés: ' + get('interest'), '', get('message')].join('\n');
-      document.getElementById('open-email').href = 'mailto:' + email + '?subject=' + encodeURIComponent('Consulta · ' + get('interest')) + '&body=' + encodeURIComponent(brief);
-      document.getElementById('brief-preview').textContent = brief;
+
+      if (!endpoint) {
+        prepararBorrador(get, 'Tu consulta está preparada. Abre tu correo, revisa el mensaje y pulsa Enviar allí. También puedes copiarlo o descargarlo.');
+        return;
+      }
+
+      const textoOriginal = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando…';
       document.getElementById('contact-result').hidden = false;
-      put('contact-status', 'Tu consulta está preparada. Abre tu correo, revisa el mensaje y pulsa Enviar allí. También puedes copiarlo o descargarlo.');
-      document.getElementById('open-email').focus();
+      if (actions) actions.hidden = true;
+      put('contact-status', 'Enviando tu consulta…');
+
+      const payload = { nombre: get('name'), email: get('email'), negocio: get('business') || 'No indicado', interes: get('interest'), mensaje: get('message'), subject: 'Consulta web · ' + get('interest') };
+      if (formKey) payload.access_key = formKey;
+
+      try {
+        const respuesta = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+        if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
+        form.reset();
+        submitButton.innerHTML = textoOriginal;
+        put('contact-status', 'Consulta recibida, ' + get('name') + '. Te respondemos a ' + get('email') + ' en menos de 24 h. Si prefieres adelantar algo, escríbenos a ' + email + '.');
+      } catch {
+        submitButton.innerHTML = textoOriginal;
+        prepararBorrador(get, 'No hemos podido enviar la consulta desde aquí. Te dejamos el mensaje preparado: ábrelo en tu correo, cópialo o descárgalo y envíalo a ' + email + '.');
+      } finally {
+        submitButton.disabled = false;
+      }
     });
     form.addEventListener('input', () => { if (!document.getElementById('contact-result').hidden) { document.getElementById('contact-result').hidden = true; brief = ''; } });
     document.getElementById('copy-brief').addEventListener('click', async () => { if (!brief) return; try { if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable'); await navigator.clipboard.writeText(brief); put('contact-status', 'Consulta copiada. Pégala en tu correo y envíala a ' + email + '.'); } catch { const pre = document.getElementById('brief-preview'); pre.closest('details').open = true; const range = document.createRange(); range.selectNodeContents(pre); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); put('contact-status', 'No se pudo copiar automáticamente. El texto está seleccionado para que lo copies o lo descargues.'); } });
