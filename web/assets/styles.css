@@ -37,3 +37,9 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
 .work-extra h3{font-size:1.85rem;letter-spacing:-.03em;margin-bottom:16px}
 .work-extra>p:last-child{color:var(--muted);font-size:1.02rem;line-height:1.65}
 @media(max-width:760px){.work-extra{margin-top:54px;padding-top:34px;margin-bottom:32px}.work-extra h3{font-size:1.65rem}}
+
+.entry-heading{margin-top:64px;padding-top:44px;border-top:1px solid var(--line);max-width:640px}
+.entry-heading h3{font-size:1.7rem;letter-spacing:-.03em}
+.entry-heading p{color:var(--muted);font-size:1rem;line-height:1.6;margin-top:10px}
+.pricing-grid-2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.entry-heading{margin-top:48px;padding-top:34px}.entry-heading h3{font-size:1.5rem}.pricing-grid-2{grid-template-columns:1fr;gap:24px;padding-top:24px}}
