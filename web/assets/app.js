@@ -49,6 +49,7 @@
 
   const form = document.getElementById('contact-form');
   let brief = '';
+  let mailto = '';
   if (form) {
     // Si hay endpoint configurado, la consulta se envía y se confirma en pantalla.
     // Si no lo hay, o si el envío falla, se prepara un borrador para el correo del visitante.
@@ -63,8 +64,10 @@
     }
 
     const prepararBorrador = (get, aviso) => {
+      window.AirealAnalytics?.track('preparar_consulta');
       brief = ['Hola, Aireal Estudio:', '', 'Nombre: ' + get('name'), 'Email: ' + get('email'), 'Negocio o web: ' + (get('business') || 'No indicado'), 'Interés: ' + get('interest'), '', get('message')].join('\n');
-      document.getElementById('open-email').href = 'mailto:' + email + '?subject=' + encodeURIComponent('Consulta · ' + get('interest')) + '&body=' + encodeURIComponent(brief);
+      // El borrador no se coloca en un atributo href que la analítica pueda registrar.
+      mailto = 'mailto:' + email + '?subject=' + encodeURIComponent('Consulta · ' + get('interest')) + '&body=' + encodeURIComponent(brief);
       document.getElementById('brief-preview').textContent = brief;
       if (actions) actions.hidden = false;
       document.getElementById('contact-result').hidden = false;
@@ -96,6 +99,7 @@
       try {
         const respuesta = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
         if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
+        window.AirealAnalytics?.track('consulta_enviada');
         form.reset();
         submitButton.innerHTML = textoOriginal;
         put('contact-status', 'Consulta recibida, ' + get('name') + '. Te respondemos a ' + get('email') + ' en menos de 24 h. Si prefieres adelantar algo, escríbenos a ' + email + '.');
@@ -106,7 +110,12 @@
         submitButton.disabled = false;
       }
     });
-    form.addEventListener('input', () => { if (!document.getElementById('contact-result').hidden) { document.getElementById('contact-result').hidden = true; brief = ''; } });
+    form.addEventListener('input', () => { if (!document.getElementById('contact-result').hidden) { document.getElementById('contact-result').hidden = true; brief = ''; mailto = ''; } });
+    document.getElementById('open-email').addEventListener('click', () => {
+      if (!mailto) return;
+      window.AirealAnalytics?.track('abrir_correo');
+      location.href = mailto;
+    });
     document.getElementById('copy-brief').addEventListener('click', async () => { if (!brief) return; try { if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable'); await navigator.clipboard.writeText(brief); put('contact-status', 'Consulta copiada. Pégala en tu correo y envíala a ' + email + '.'); } catch { const pre = document.getElementById('brief-preview'); pre.closest('details').open = true; const range = document.createRange(); range.selectNodeContents(pre); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); put('contact-status', 'No se pudo copiar automáticamente. El texto está seleccionado para que lo copies o lo descargues.'); } });
     document.getElementById('download-brief').addEventListener('click', () => { if (!brief) return; const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' })); const link = document.createElement('a'); link.href = url; link.download = 'consulta-aireal.txt'; document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000); put('contact-status', 'Se ha preparado la descarga de tu consulta. Envíala a ' + email + ' cuando quieras.'); });
     document.getElementById('prepare-brief').disabled = false;
