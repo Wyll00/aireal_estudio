@@ -41,10 +41,13 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
 .entry-heading{margin-top:64px;padding-top:44px;border-top:1px solid var(--line);max-width:640px}
 .entry-heading h3{font-size:1.7rem;letter-spacing:-.03em}
 .entry-heading p{color:var(--muted);font-size:1rem;line-height:1.6;margin-top:10px}
-.pricing-grid-2{grid-template-columns:repeat(2,1fr)}
-@media(max-width:760px){.entry-heading{margin-top:48px;padding-top:34px}.entry-heading h3{font-size:1.5rem}.pricing-grid-2{grid-template-columns:1fr;gap:24px;padding-top:24px}}
+@media(max-width:760px){.entry-heading{margin-top:48px;padding-top:34px}.entry-heading h3{font-size:1.5rem}}
 
 .wordmark.wordmark-logo{padding-bottom:0;line-height:0}
 .wordmark-logo img{display:block;width:auto;height:52px}
 .footer-wordmark.wordmark-logo img{height:74px}
 @media(max-width:760px){.wordmark-logo img{height:46px}.footer-wordmark.wordmark-logo img{height:62px}}
+
+@media(min-width:1151px){.service-grid{grid-template-columns:repeat(5,1fr)}.service-card{padding:26px 20px 24px}.service-card h3{font-size:1.24rem}.service-card p{font-size:.92rem}.service-icon{margin-block:22px 24px}}
+@media(max-width:1150px){.service-card:last-child{grid-column:1/-1}}
+@media(max-width:760px){.discipline-strip b:nth-of-type(2){display:inline}}
