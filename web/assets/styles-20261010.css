@@ -51,3 +51,23 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
 @media(min-width:1151px){.service-grid{grid-template-columns:repeat(5,1fr)}.service-card{padding:26px 20px 24px}.service-card h3{font-size:1.24rem}.service-card p{font-size:.92rem}.service-icon{margin-block:22px 24px}}
 @media(max-width:1150px){.service-card:last-child{grid-column:1/-1}}
 @media(max-width:760px){.discipline-strip b:nth-of-type(2){display:inline}}
+
+.diagnostico-section{background:var(--dark);color:var(--paper)}
+.diagnostico-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.diagnostico-section .eyebrow{color:#e4ae8c}
+.diagnostico-lead{color:#c3c4b9;font-size:1.05rem;line-height:1.65;max-width:48ch;margin-top:24px}
+.diagnostico-pasos{list-style:none;padding:0;margin:28px 0 32px;display:flex;flex-direction:column;gap:12px;counter-reset:dp}
+.diagnostico-pasos li{counter-increment:dp;position:relative;padding-left:38px;color:#c3c4b9;font-size:.98rem}
+.diagnostico-pasos li::before{content:counter(dp);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;border:1px solid #e4ae8c;color:#e4ae8c;font-size:.74rem;display:grid;place-items:center}
+.diagnostico-nota{font-size:.82rem;color:#9b9c92;margin-top:22px}
+/* Sin subrayado el enlace al aviso no se distingue del texto gris. */
+.diagnostico-nota a{color:var(--paper);text-decoration:underline;text-underline-offset:3px}
+.diagnostico-nota a:hover,.diagnostico-nota a:focus-visible{color:var(--white)}
+.diagnostico-marco{display:flex;justify-content:center}
+.diagnostico-pantalla{width:100%;max-width:300px;background:#20231e;border:1px solid #505247;border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:13px}
+.dp-barra{height:8px;width:45%;background:var(--accent);border-radius:99px}
+.dp-linea{height:8px;background:#505247;border-radius:99px}
+.dp-linea.dp-ancha{width:78%;height:12px}
+.dp-campo{height:36px;background:#191c17;border:1px solid #505247;border-radius:4px}
+.dp-boton{margin-top:8px;background:var(--accent);color:#fff8f2;font-size:.82rem;font-weight:600;text-align:center;padding:12px 0;border-radius:3px}
+@media(max-width:900px){.diagnostico-grid{grid-template-columns:1fr;gap:38px}.diagnostico-marco{display:none}}
