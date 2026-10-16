@@ -135,3 +135,17 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
 @media(min-width:761px){
   .pricing-grid>.price-card:last-child:nth-child(3n+1){grid-column:2}
 }
+
+/* Los trabajos reales son cinco y la rejilla tiene tres columnas, asi que
+   las dos ultimas se quedaban pegadas a la izquierda bajo un hueco vacio.
+   Con seis columnas cada tarjeta ocupa dos y sigue viendose igual; la cuarta
+   arranca en la segunda columna, de modo que las dos de abajo quedan
+   centradas justo bajo las tres de arriba.
+   El desplazamiento solo se aplica si esa cuarta tarjeta tiene exactamente
+   dos detras, es decir, si hay cinco: al anadir una sexta se desactiva solo.
+   Por debajo de 1150 px la rejilla ya es de dos columnas y no se toca. */
+@media(min-width:1151px){
+  .real-work{grid-template-columns:repeat(6,1fr)}
+  .real-work article{grid-column:span 2}
+  .real-work article:nth-child(4):nth-last-child(2){grid-column:2/span 2}
+}
