@@ -65,7 +65,7 @@
 
     const prepararBorrador = (get, aviso) => {
       window.AirealAnalytics?.track('preparar_consulta');
-      brief = ['Hola, Aireal Estudio:', '', 'Nombre: ' + get('name'), 'Email: ' + get('email'), 'Negocio o web: ' + (get('business') || 'No indicado'), 'Interés: ' + get('interest'), '', get('message')].join('\n');
+      brief = ['Hola, Aireal Estudio:', '', 'Nombre: ' + get('name'), 'Email: ' + get('email'), 'Negocio o web: ' + (get('business') || 'No indicado'), 'Zona: ' + (get('zona') || 'No indicada'), 'Interés: ' + get('interest'), '', get('message')].join('\n');
       // El borrador no se coloca en un atributo href que la analítica pueda registrar.
       mailto = 'mailto:' + email + '?subject=' + encodeURIComponent('Consulta · ' + get('interest')) + '&body=' + encodeURIComponent(brief);
       document.getElementById('brief-preview').textContent = brief;
@@ -93,7 +93,7 @@
       if (actions) actions.hidden = true;
       put('contact-status', 'Enviando tu consulta…');
 
-      const payload = { nombre: get('name'), email: get('email'), negocio: get('business') || 'No indicado', interes: get('interest'), mensaje: get('message'), subject: 'Consulta web · ' + get('interest') };
+      const payload = { nombre: get('name'), email: get('email'), negocio: get('business') || 'No indicado', zona: get('zona') || 'No indicada', interes: get('interest'), mensaje: get('message'), subject: 'Consulta web · ' + get('interest') };
       if (formKey) payload.access_key = formKey;
 
       try {

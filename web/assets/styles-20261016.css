@@ -126,3 +126,12 @@ h1,h2,h3{overflow-wrap:anywhere}.hero-copy,.ai-copy,.contact-grid>div,.calculato
   /* Las fotos a plena luz deslumbran en una pagina oscura. */
   .hero-image img,.work-image img,.case-media img{filter:brightness(.92)}
 }
+
+/* La rejilla de precios tiene tres columnas. Al entrar la cuarta tarjeta, se
+   quedaba sola a la izquierda de una fila vacia y parecia sin terminar.
+   Centrarla hace que la fila se lea como una decision. La regla solo se
+   cumple cuando esa tarjeta es la ultima Y abre fila, asi que se desactiva
+   sola si algun dia hay una quinta. */
+@media(min-width:761px){
+  .pricing-grid>.price-card:last-child:nth-child(3n+1){grid-column:2}
+}
