@@ -1,0 +1,11 @@
+# El panel no puede vivir aqui: horizoncompany.es es Cloudflare Pages, sin
+# servidor ni base de datos. La aplicacion corre en el VPS. Estas lineas
+# hacen que escribir la direccion corta te lleve donde toca.
+#
+# Se mantienen en dominios separados a proposito: un subdominio es otro
+# origen, asi que la cookie de sesion del panel no es accesible desde la
+# web publica, que carga Clarity y otros scripts de terceros.
+/admin                 https://diagnostico.horizoncompany.es/admin  302
+/admin/*               https://diagnostico.horizoncompany.es/admin/:splat  302
+/facturacion           https://diagnostico.horizoncompany.es/admin/facturacion  302
+/diagnostico           https://diagnostico.horizoncompany.es/  302
