@@ -8,6 +8,18 @@
 /assets/*
   Cache-Control: public, max-age=3600
 
+# Las paginas de servicio viven en carpetas, asi que su URL no acaba
+# en .html y la regla de abajo no las alcanza. Mismo trato: HTML que
+# se revalida siempre, para que un cambio de texto no tarde horas.
+/diseno-web-tenerife/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/fotografia-gastronomica-tenerife/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/cartas-digitales-restaurantes/*
+  Cache-Control: public, max-age=0, must-revalidate
+
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 

@@ -143,3 +143,170 @@
   }
   .ae-footer__totop:hover .ae-icon{transform:translateY(-3px)}
 }
+
+
+/* ─────────────────────────────────────────────────────────────────
+   Bajando, las cosas se incorporan por su lado
+   ─────────────────────────────────────────────────────────────────
+   El sistema de aparicion ya existia: la portada marca .ae-reveal sobre
+   un puñado de bloques y los sube 24 px cuando entran en pantalla, con
+   80 ms de retraso entre hermanos (la variable --i, que pone el JS).
+   Lo unico que cambia aqui es POR DONDE entran.
+
+   La regla es que cada cosa entre por el lado en el que vive. En la
+   seccion del estudio el texto esta a la izquierda y las fichas a la
+   derecha, asi que el texto viene de la izquierda y las fichas de la
+   derecha: parece que la seccion se monta sola, no que todo suba en
+   bloque. Igual en preguntas y en contacto.
+
+   Y no en todo, a proposito. Las cabeceras de seccion siguen subiendo
+   desde abajo, todas, sin excepcion: son el latido de la pagina y si
+   cada una entrara distinta, la web pareceria un muestrario. Servicios,
+   precios, planes, las tarjetas de enlace y la frase grande tambien se
+   quedan como estaban. Lo lateral tiene que ser la excepcion para que
+   se note.
+
+   El desplazamiento se pasa por --rx/--ry en vez de reescribir el
+   transform de cada caso. Asi la base sigue decidiendo el transform y
+   .is-in sigue ganando con su "none": si se tocara el transform
+   directamente en cada regla, su especificidad superaria a la de
+   .is-in y los bloques se quedarian fuera de sitio para siempre. */
+
+@media (prefers-reduced-motion: no-preference){
+  /* Misma especificidad que la regla base y mas abajo en el archivo, asi
+     que gana ella; .is-in sigue por encima de las dos. */
+  .ae-reveal-on .ae-reveal{transform:translate(var(--rx,0),var(--ry,24px))}
+
+  /* Para que algo entre de lado tiene que haber un borde que lo tape, o
+     en el movil asoma por fuera y aparece la barra horizontal. Se recorta
+     en el contenedor de cada rejilla, no en .ae-section__inner: ahi
+     dentro, en movil, la tira de trabajos se sale a proposito hasta el
+     borde de la pantalla. Los 14 px de margen dejan sitio al anillo de
+     foco, que si no quedaria cortado. */
+  .ae-studio,
+  .ae-faq,
+  .ae-contact,
+  .ae-steps{
+    overflow-x:clip;
+    overflow-clip-margin:14px
+  }
+
+  /* Estudio: el texto por la izquierda, las fichas y el equipo por la
+     derecha. Es la que mas se parece a dos manos juntando algo. */
+  .ae-reveal-on .ae-studio__text{--rx:-32px;--ry:0}
+  .ae-reveal-on .ae-studio__side .ae-features,
+  .ae-reveal-on .ae-studio__side .ae-dgroup{--rx:32px;--ry:0}
+
+  /* Proceso: los cuatro pasos entran en fila por la izquierda, uno
+     detras de otro con el retraso que ya traian. Se lee como lo que es,
+     una secuencia. */
+  .ae-reveal-on .ae-steps__item{--rx:-32px;--ry:0}
+
+  /* Preguntas: dos columnas de desplegables, una por cada lado. */
+  .ae-reveal-on .ae-faq>.ae-dgroup:first-child{--rx:-32px;--ry:0}
+  .ae-reveal-on .ae-faq>.ae-dgroup:last-child{--rx:32px;--ry:0}
+
+  /* Contacto: los canales y la nota de datos estan a la izquierda, el
+     formulario a la derecha. Entran como estan puestos. */
+  .ae-reveal-on .ae-contact__intro .ae-channels,
+  .ae-reveal-on .ae-contact__intro .ae-infocard{--rx:-32px;--ry:0}
+  .ae-reveal-on .ae-contact__form .ae-form{--rx:32px;--ry:0}
+
+  /* Trabajo: solo de 760 px para arriba. Por debajo la rejilla es una
+     tira que se arrastra con el dedo (overflow-x:auto y scroll-snap), y
+     moverle las tarjetas de lado seria pelearse con el gesto del dedo.
+     La tarjeta ancha ocupa toda la fila, asi que esa sigue subiendo.
+
+     Cada tarjeta entra por el lado de su columna, y por eso hay dos
+     bloques: a dos columnas las hijas 2 y 4 caen a la izquierda y las 3
+     y 5 a la derecha; a tres columnas la 3 queda a la izquierda, la 4 en
+     el centro (sube, sin lado) y la 2 y la 5 a la derecha. */
+  @media (min-width:760px){
+    /* Aqui si: por debajo de 760 la rejilla es el carrusel y lleva su
+       propio overflow-x:auto, que no se puede pisar. */
+    .ae-workgrid{overflow-x:clip;overflow-clip-margin:14px}
+  }
+  @media (min-width:760px) and (max-width:1079px){
+    .ae-reveal-on .ae-workgrid .ae-work:nth-child(2n){--rx:-32px;--ry:0}
+    .ae-reveal-on .ae-workgrid .ae-work:nth-child(2n+3){--rx:32px;--ry:0}
+  }
+  @media (min-width:1080px){
+    .ae-reveal-on .ae-workgrid .ae-work:nth-child(3){--rx:-36px;--ry:0}
+    .ae-reveal-on .ae-workgrid .ae-work:nth-child(2),
+    .ae-reveal-on .ae-workgrid .ae-work:nth-child(5){--rx:36px;--ry:0}
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   Paginas de servicio
+   ─────────────────────────────────────────────────────────────────
+   Tres paginas de texto para que a Aireal la encuentren buscando
+   "diseno web en Tenerife", "fotografia gastronomica" o "cartas
+   digitales". No traen diseno propio: usan .ae-section, .ae-shead y
+   .ae-dgroup como el resto de la web, y lo unico que falta es como se
+   compone una columna de texto largo, que la portada no tiene.
+
+   El tamano del texto es el mismo que usa la seccion del estudio
+   (21/31, y 19/28 en movil): es el tratamiento que esta web ya le da a
+   un bloque de prosa, asi que no hay una segunda escala que mantener.
+   El ancho es --text-max, mas estrecho que el titular, que es como se
+   lee un texto sin perder el renglon. */
+
+/* La cabecera de estas paginas va alineada a la izquierda (--start) y
+   .ae-shead__actions centra por defecto, porque en la portada solo se
+   usa con cabeceras centradas. Aqui el boton tiene que empezar donde
+   empieza el titular, igual que ya hace la entradilla. */
+.ae-shead--start .ae-shead__actions{justify-content:flex-start}
+
+.ae-prose{max-width:var(--text-max)}
+
+.ae-prose__block+.ae-prose__block,
+.ae-prose__links+.ae-prose__block{margin-top:var(--space-12)}
+.ae-prose__block+.ae-prose__links{margin-top:var(--space-10)}
+
+.ae-prose h2{margin-bottom:var(--space-4)}
+
+.ae-prose p{
+  color:var(--label-secondary);
+  font-size:21px;
+  line-height:31px;
+  letter-spacing:-.01em;
+  text-wrap:pretty
+}
+.ae-prose p+p{margin-top:var(--space-5)}
+
+@media (max-width:759px){
+  .ae-prose p{font-size:19px;line-height:28px}
+}
+
+/* Los dos enlaces a la portada van en fila; en movil caen uno debajo
+   del otro sin que se toquen las zonas de pulsacion. */
+.ae-prose__links{display:flex;flex-wrap:wrap;gap:0 var(--space-8)}
+.ae-prose__list{display:grid}
+
+/* El cierre es una llamada, no una explicacion: su texto va en el color
+   principal para que no parezca una nota al pie. */
+.ae-prose__cta p{color:var(--label)}
+
+/* ─────────────────────────────────────────────────────────────────
+   Los titulos de los servicios llevan a su pagina
+   ─────────────────────────────────────────────────────────────────
+   Cada tarjeta de servicio de la portada tiene ya su boton al
+   formulario; ahora el titulo lleva ademas a la pagina del servicio.
+   Son dos destinos distintos en la misma tarjeta, asi que el titulo
+   necesita verse como enlace o no lo pulsa nadie: raya de 1 px en
+   --control-border, que sobre la tarjeta llega al 3:1 que hace falta
+   para que se distinga, y terracota al pasar por encima. El color del
+   texto no cambia: sigue siendo un titulo. */
+
+.ae-service__title a{
+  color:inherit;
+  text-decoration-line:underline;
+  text-decoration-color:var(--control-border);
+  text-decoration-thickness:1px;
+  text-underline-offset:6px;
+  transition:text-decoration-color var(--dur-fast) var(--ease-out)
+}
+
+.ae-service__title a:hover{text-decoration-color:var(--accent)}
