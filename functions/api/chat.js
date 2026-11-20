@@ -21,7 +21,7 @@ let knowledge = { text: '', at: 0 };
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
-  headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+  headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store, private', 'CDN-Cache-Control': 'no-store', 'Cloudflare-CDN-Cache-Control': 'no-store' },
 });
 
 function limited(ip) {
@@ -77,6 +77,11 @@ export async function onRequestGet({ env }) {
 }
 
 export async function onRequestPost({ request, env }) {
+  // Comprobación de «¿estás activo?» por POST: una caché de Cloudflare nunca guarda un POST,
+  // así que el botón no puede quedarse escondido por una respuesta vieja.
+  const peek = await request.clone().json().catch(() => null);
+  if (peek && peek.ping === true) return json({ ready: Boolean(env.ANTHROPIC_API_KEY) });
+
   if (!env.ANTHROPIC_API_KEY) return json({ error: 'El asistente no está activado.' }, 503);
 
   const origin = request.headers.get('Origin');

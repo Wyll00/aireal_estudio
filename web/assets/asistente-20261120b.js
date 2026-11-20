@@ -23,8 +23,13 @@
   const mark = (cls) => svg([[markA, 'ae-chat__mark-ink'], [markDot, 'ae-chat__mark-dot']], '33 38 52 46', cls);
 
   async function ready() {
-    try { const r = await fetch(ENDPOINT, { headers: { Accept: 'application/json' } }); if (!r.ok) return false; return (await r.json()).ready === true; }
-    catch { return false; }
+    try {
+      const r = await fetch(ENDPOINT, { method: 'POST', cache: 'no-store', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: '{"ping":true}' });
+      if (!r.ok) { console.info('[Aireal] Asistente oculto: /api/chat respondió ' + r.status); return false; }
+      const on = (await r.json()).ready === true;
+      if (!on) console.info('[Aireal] Asistente oculto: falta ANTHROPIC_API_KEY en Cloudflare');
+      return on;
+    } catch (e) { console.info('[Aireal] Asistente oculto: no se pudo contactar con /api/chat', e); return false; }
   }
 
   function build() {
