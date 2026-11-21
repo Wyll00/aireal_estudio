@@ -4,7 +4,7 @@ window.AIREAL_CONFIG = Object.freeze({
   siteUrl: 'https://horizoncompany.es',
   email: 'williamluisgonzalez@gmail.com',
   instagram: 'https://instagram.com/airealestudio',
-  whatsapp: '', // Número real con prefijo y solo dígitos. Ejemplo de formato: 34 + 9 dígitos.
+  whatsapp: '34603040431', // Prefijo 34 y solo dígitos: se muestra como +34 603 040 431.
   bookingUrl: '', // URL HTTPS de tu agenda, si decides utilizar una.
 
   // Envío real del formulario. Mientras esté vacío, la web prepara un borrador

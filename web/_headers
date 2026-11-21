@@ -26,5 +26,5 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
-/assets/config.js
+/assets/config-20261121.js
   Cache-Control: public, max-age=0, must-revalidate
