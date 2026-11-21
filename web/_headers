@@ -1,4 +1,9 @@
+# Strict-Transport-Security obliga al navegador a usar siempre https durante
+# un ano, sin pasar antes por http. Sin includeSubDomains a proposito: no se
+# sabe si todos los subdominios de horizoncompany.es tienen certificado, y uno
+# sin https quedaria inaccesible durante ese ano.
 /*
+  Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY

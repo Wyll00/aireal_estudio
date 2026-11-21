@@ -11,8 +11,16 @@
 
 const MODEL_DEFAULT = 'claude-haiku-5-5';
 const MAX_INPUT = 600;        // caracteres por mensaje del visitante
+const MAX_ASSISTANT = 1500;   // caracteres por respuesta anterior que se reenvía
+const MAX_HISTORY = 8000;     // caracteres de historial en total
 const MAX_TURNS = 12;         // mensajes de historial que se envían
-const MAX_TOKENS = 450;       // longitud máxima de cada respuesta
+// Haiku 5.5 piensa antes de contestar aunque no se le pida, y lo que piensa
+// cuenta contra este tope. Con 450 podía gastarlo pensando y dejar la
+// respuesta cortada o vacía. La brevedad la marca el prompt («de dos a cinco
+// frases»), no este número.
+const MAX_TOKENS = 1024;
+// Preguntas sobre lo que dice la web: con esfuerzo bajo piensa poco o nada.
+const EFFORT = 'low';
 const RATE = { windowMs: 10 * 60 * 1000, max: 20 }; // por IP y por instancia
 const ALLOWED_HOSTS = /(^|\.)horizoncompany\.es$|(^|\.)aireal\.pages\.dev$/;
 
@@ -84,11 +92,15 @@ export async function onRequestPost({ request, env }) {
 
   if (!env.ANTHROPIC_API_KEY) return json({ error: 'El asistente no está activado.' }, 503);
 
+  // Un navegador manda siempre Origin en un POST, también desde la propia web.
+  // Antes, una petición SIN Origin pasaba: cualquier programa podía usar el
+  // asistente (y la clave) sin pasar por la web. No para a quien falsifique la
+  // cabecera a propósito, pero corta el abuso más simple sin tocar a ningún
+  // visitante real.
   const origin = request.headers.get('Origin');
-  if (origin) {
-    try { if (!ALLOWED_HOSTS.test(new URL(origin).hostname)) return json({ error: 'Origen no permitido.' }, 403); }
-    catch { return json({ error: 'Origen no permitido.' }, 403); }
-  }
+  let origenValido = false;
+  try { origenValido = Boolean(origin) && ALLOWED_HOSTS.test(new URL(origin).hostname); } catch { origenValido = false; }
+  if (!origenValido) return json({ error: 'Origen no permitido.' }, 403);
 
   const ip = request.headers.get('CF-Connecting-IP') || 'anon';
   if (limited(ip)) return json({ error: 'Has hecho muchas preguntas seguidas. Prueba en unos minutos o escríbenos desde el formulario.' }, 429);
@@ -99,7 +111,10 @@ export async function onRequestPost({ request, env }) {
   const messages = raw
     .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
     .slice(-MAX_TURNS)
-    .map((m) => ({ role: m.role, content: m.content.trim().slice(0, m.role === 'user' ? MAX_INPUT : 2000) }));
+    .map((m) => ({ role: m.role, content: m.content.trim().slice(0, m.role === 'user' ? MAX_INPUT : MAX_ASSISTANT) }));
+  // El historial lo manda el navegador y se puede inflar a mano para encarecer
+  // cada pregunta: si se pasa de tamaño, se quitan los turnos más antiguos.
+  while (messages.length > 1 && messages.reduce((t, m) => t + m.content.length, 0) > MAX_HISTORY) messages.shift();
   while (messages.length && messages[0].role !== 'user') messages.shift();
   if (!messages.length || messages[messages.length - 1].role !== 'user') return json({ error: 'Escribe una pregunta.' }, 400);
 
@@ -111,7 +126,17 @@ export async function onRequestPost({ request, env }) {
     res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: env.ANTHROPIC_MODEL || MODEL_DEFAULT, max_tokens: MAX_TOKENS, system: systemPrompt(site), messages }),
+      body: JSON.stringify({
+        model: env.ANTHROPIC_MODEL || MODEL_DEFAULT,
+        max_tokens: MAX_TOKENS,
+        output_config: { effort: EFFORT },
+        // El texto de la web es el mismo para todos los visitantes y pesa unos
+        // miles de tokens. En caché, la primera pregunta lo paga a 1,25x y las
+        // de los cinco minutos siguientes lo leen a 0,1x: a partir de la segunda
+        // pregunta de una conversación, ya sale más barato.
+        system: [{ type: 'text', text: systemPrompt(site), cache_control: { type: 'ephemeral' } }],
+        messages,
+      }),
     });
   } catch {
     return json({ error: 'No hemos podido conectar con el asistente. Escríbenos desde el formulario.' }, 502);
@@ -122,5 +147,26 @@ export async function onRequestPost({ request, env }) {
   }
   const data = await res.json();
   const text = (data.content || []).filter((c) => c.type === 'text').map((c) => c.text).join('\n').trim();
-  return json({ reply: text || 'No tengo una respuesta para eso. Mejor escríbenos desde el formulario y te contesta William.' });
+  const reply = limpiar(text, data.stop_reason === 'max_tokens');
+  const respuesta = json({ reply: reply || 'No tengo una respuesta para eso. Mejor escríbenos desde el formulario y te contesta William.' });
+  // Para comprobar desde fuera que la caché funciona, sin acceso a Cloudflare:
+  // solo cuentas de tokens, nada del contenido.
+  const u = data.usage || {};
+  respuesta.headers.set('x-asistente-cache', `escritos=${u.cache_creation_input_tokens || 0} leidos=${u.cache_read_input_tokens || 0} sin-cache=${u.input_tokens || 0}`);
+  return respuesta;
+}
+
+/**
+ * La web pone la respuesta como texto, no como HTML: un «**350 €**» se veía
+ * con los asteriscos. Se quitan las marcas de negrita. Y si la respuesta se
+ * cortó por el tope de tokens, se deja hasta la última frase completa en vez
+ * de terminar a media palabra.
+ */
+function limpiar(texto, cortado) {
+  let t = texto.replace(/\*\*(.+?)\*\*/g, '$1').replace(/__(.+?)__/g, '$1').trim();
+  if (cortado && t && !/[.!?…]$/.test(t)) {
+    const fin = Math.max(t.lastIndexOf('. '), t.lastIndexOf('.\n'), t.lastIndexOf('? '), t.lastIndexOf('! '));
+    t = fin > 0 ? t.slice(0, fin + 1) : t + '…';
+  }
+  return t;
 }

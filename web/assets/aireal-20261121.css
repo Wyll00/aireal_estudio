@@ -34,19 +34,22 @@
    cubic-bezier(.25,.46,.45,.94), frenando al llegar arriba. Con eso el
    bote parece peso y no un muelle. */
 
+/* Solo en la portada (la unica pagina con .ae-hero). Las demas comparten
+   la cabecera, y la caida de la marca sonaria en cada pagina que se abre:
+   es un saludo, no un tic. Sin soporte de :has(), la marca se ve quieta. */
 @media (prefers-reduced-motion: no-preference){
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink{
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink{
     animation:ae-marca-letra .4s both
   }
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(2){animation-delay:.07s}
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(3){animation-delay:.14s}
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(4){animation-delay:.21s}
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(5){animation-delay:.28s}
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(6){animation-delay:.35s}
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(2){animation-delay:.07s}
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(3){animation-delay:.14s}
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(4){animation-delay:.21s}
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(5){animation-delay:.28s}
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__ink:nth-of-type(6){animation-delay:.35s}
 
   /* El punto entra cuando la ultima letra ya ha aterrizado (.35 + .4) y
      bota hasta el 90% de 2,4 s: dos segundos justos botando. */
-  .ae-nav__brand .ae-logo--wordmark .ae-logo__dot{
+  body:has(.ae-hero) .ae-nav__brand .ae-logo--wordmark .ae-logo__dot{
     animation:ae-marca-punto 2.4s .74s both
   }
 }
@@ -236,3 +239,158 @@
     .ae-reveal-on .ae-workgrid .ae-work:nth-child(5){--rx:36px;--ry:0}
   }
 }
+
+
+/* ─────────────────────────────────────────────────────────────────
+   Paginas de servicio
+   ─────────────────────────────────────────────────────────────────
+   Tres paginas de texto para que a Aireal la encuentren buscando
+   "diseno web en Tenerife", "fotografia gastronomica" o "cartas
+   digitales". No traen diseno propio: usan .ae-section, .ae-shead y
+   .ae-dgroup como el resto de la web, y lo unico que falta es como se
+   compone una columna de texto largo, que la portada no tiene.
+
+   El tamano del texto es el mismo que usa la seccion del estudio
+   (21/31, y 19/28 en movil): es el tratamiento que esta web ya le da a
+   un bloque de prosa, asi que no hay una segunda escala que mantener.
+   El ancho es --text-max, mas estrecho que el titular, que es como se
+   lee un texto sin perder el renglon. */
+
+/* La cabecera de estas paginas va alineada a la izquierda (--start) y
+   .ae-shead__actions centra por defecto, porque en la portada solo se
+   usa con cabeceras centradas. Aqui el boton tiene que empezar donde
+   empieza el titular, igual que ya hace la entradilla. */
+.ae-shead--start .ae-shead__actions{justify-content:flex-start}
+
+.ae-prose{max-width:var(--text-max)}
+
+.ae-prose__block+.ae-prose__block,
+.ae-prose__links+.ae-prose__block{margin-top:var(--space-12)}
+.ae-prose__block+.ae-prose__links{margin-top:var(--space-10)}
+
+.ae-prose h2{margin-bottom:var(--space-4)}
+
+.ae-prose p{
+  color:var(--label-secondary);
+  font-size:21px;
+  line-height:31px;
+  letter-spacing:-.01em;
+  text-wrap:pretty
+}
+.ae-prose p+p{margin-top:var(--space-5)}
+
+@media (max-width:759px){
+  .ae-prose p{font-size:19px;line-height:28px}
+}
+
+/* Los dos enlaces a la portada van en fila; en movil caen uno debajo
+   del otro sin que se toquen las zonas de pulsacion. */
+.ae-prose__links{display:flex;flex-wrap:wrap;gap:0 var(--space-8)}
+.ae-prose__list{display:grid}
+
+/* El cierre es una llamada, no una explicacion: su texto va en el color
+   principal para que no parezca una nota al pie. */
+.ae-prose__cta p{color:var(--label)}
+
+/* ─────────────────────────────────────────────────────────────────
+   Los titulos de los servicios llevan a su pagina
+   ─────────────────────────────────────────────────────────────────
+   Cada tarjeta de servicio de la portada tiene ya su boton al
+   formulario; ahora el titulo lleva ademas a la pagina del servicio.
+   Son dos destinos distintos en la misma tarjeta, asi que el titulo
+   necesita verse como enlace o no lo pulsa nadie: raya de 1 px en
+   --control-border, que sobre la tarjeta llega al 3:1 que hace falta
+   para que se distinga, y terracota al pasar por encima. El color del
+   texto no cambia: sigue siendo un titulo. */
+
+.ae-service__title a{
+  color:inherit;
+  text-decoration-line:underline;
+  text-decoration-color:var(--control-border);
+  text-decoration-thickness:1px;
+  text-underline-offset:6px;
+  transition:text-decoration-color var(--dur-fast) var(--ease-out)
+}
+
+.ae-service__title a:hover{text-decoration-color:var(--accent)}
+
+
+/* ─────────────────────────────────────────────────────────────────
+   Paginas de texto: legales, conceptos y error
+   ─────────────────────────────────────────────────────────────────
+   Hasta el 21 de noviembre estas siete paginas seguian con la hoja del
+   diseno anterior: quien pulsaba "Aviso legal" desde la portada llegaba a
+   algo que parecia otra web, con otro logotipo y otra cabecera. Ahora usan
+   las mismas piezas que las paginas de servicio (.ae-section, .ae-shead,
+   .ae-prose) y aqui solo esta lo que ellas no tenian: el aviso destacado,
+   las listas, la ficha de un concepto y su imagen. */
+
+.ae-volver{
+  display:inline-flex;
+  align-items:center;
+  min-height:var(--tap-min);
+  margin-bottom:var(--space-3);
+  color:var(--accent-text);
+  font-size:15px;
+  line-height:20px;
+  text-decoration:none
+}
+.ae-volver:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Un aviso que hay que leer antes que el resto: "esta en fase de pruebas",
+   "las imagenes son de IA". Raya de acento a la izquierda y el texto en el
+   color principal, no en el secundario del resto de la prosa. */
+.ae-aviso{
+  margin:0 0 var(--space-10);
+  padding:var(--space-5) var(--space-6);
+  border-left:3px solid var(--accent);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  background:var(--bg-secondary)
+}
+.ae-prose .ae-aviso p{color:var(--label);font-size:17px;line-height:26px}
+.ae-prose .ae-aviso p+p{margin-top:var(--space-2)}
+.ae-prose .ae-prose__block+.ae-aviso,
+.ae-prose p+.ae-aviso{margin-top:var(--space-10)}
+
+/* Las listas de la prosa. El reset de la hoja les quita las vinetas a
+   todas; en un texto legal hacen falta para que cada punto se lea como
+   un punto. */
+.ae-prose ul:not(.ae-prose__list){
+  display:grid;
+  gap:var(--space-2);
+  padding-left:1.25em;
+  list-style:disc;
+  color:var(--label-secondary);
+  font-size:19px;
+  line-height:28px
+}
+.ae-prose ul:not(.ae-prose__list) li::marker{color:var(--accent)}
+.ae-prose p+ul,.ae-prose ul+p{margin-top:var(--space-5)}
+
+/* El texto legal se lee entero y de seguido: va a 17 px, el tamano de
+   cuerpo de la web, no al de las paginas de servicio, que es para leer
+   por encima. */
+.ae-prose--legal p,
+.ae-prose--legal ul:not(.ae-prose__list){font-size:17px;line-height:27px}
+.ae-prose--legal h2:not(:first-child){margin-top:var(--space-10)}
+
+/* Ficha de un concepto: que es, de que sector, con que imagenes y en que
+   estado. Cada par va dentro de un div, que es valido dentro de un dl. */
+.ae-ficha{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:var(--space-4) var(--space-6);
+  margin:0 0 var(--space-10);
+  padding:var(--space-5) var(--space-6);
+  border-radius:var(--radius-md);
+  background:var(--bg-secondary)
+}
+.ae-ficha div{display:grid;gap:2px}
+.ae-ficha dt{color:var(--label-secondary);font-size:13px;line-height:18px}
+.ae-ficha dd{margin:0;color:var(--label);font-size:15px;line-height:22px}
+
+/* La imagen grande del concepto. height:auto es lo que evita que se
+   estire: con width y height en la etiqueta y solo max-width en la hoja,
+   el navegador respeta el alto escrito y la deforma. */
+.ae-figura{margin:0 0 var(--space-12)}
+.ae-figura img{width:100%;height:auto;border-radius:var(--radius-lg)}

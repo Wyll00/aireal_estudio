@@ -69,7 +69,7 @@
 
     const foot = el('p', 'ae-chat__foot');
     const contact = el('a', null, 'Escribir a William'); contact.href = '#contacto';
-    const privacy = el('a', null, 'privacidad'); privacy.href = 'privacidad.html';
+    const privacy = el('a', null, 'privacidad'); privacy.href = '/privacidad';
     foot.append('Respuestas generadas por Claude (Anthropic) con la información de la web. No compartas datos personales · ', privacy, ' · ', contact);
 
     panel.append(head, log, form, foot);

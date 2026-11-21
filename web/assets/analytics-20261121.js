@@ -34,7 +34,7 @@
   panel.hidden = Boolean(consent);
   panel.innerHTML = '<div class="analytics-copy"><h2 id="analytics-title" tabindex="-1">Tu privacidad, tu elección</h2>' +
     '<p>Con tu permiso, usamos Microsoft Clarity para medir las visitas y ver cómo se navega por la web mediante mapas de clics y grabaciones de sesiones. Puedes rechazarlo y seguir navegando.</p>' +
-    '<p><a href="/cookies.html">Información de cookies</a> · <a href="/privacidad.html">Privacidad</a></p>' +
+    '<p><a href="/cookies">Información de cookies</a> · <a href="/privacidad">Privacidad</a></p>' +
     '<p id="analytics-current" role="status"></p></div>' +
     '<div class="analytics-actions"><button type="button" id="analytics-reject">Rechazar analítica</button>' +
     '<button type="button" id="analytics-accept">Aceptar analítica</button>' +
